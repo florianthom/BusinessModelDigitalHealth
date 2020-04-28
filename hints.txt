@@ -1,0 +1,11 @@
+// Start application and watches it if changes are made -> recompilation instantly
+ng serve --open
+	- open: does open browser
+
+// Starts node application
+// possible npm install node-watch
+node app.js
+
+// starts asp.net core application
+// dotnet watch run possible
+dotnet run
