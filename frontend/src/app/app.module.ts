@@ -83,20 +83,34 @@ most important building blocks of angular:
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+
+
+
+
+
 import { MaterialModule } from './material/material.module';
-
 import {HomeModule} from "./home/home.module";
-
 // cant be imported into every feature module
 // since we define here our singletons
 import {CoreModule} from "./core/core.module";
-
 // can be imported into every feature module
 // since we dont define singletons here
 import {SharedModule} from "./shared/shared.module";
+import {AboutModule} from "./about/about.module";
+import {LegalNoticeModule} from "./legal-notice/legal-notice.module";
+import {AuthModule} from "./auth/auth.module";
+import {CanvasModule} from "./canvas/canvas.module";
+
+
+
+
+
+
+
+
 
 // Ng-dekorator / Annotations / JavaScript-Features
 // contains metadata to classes/properties to set how they are suppose to function
@@ -116,7 +130,11 @@ import {SharedModule} from "./shared/shared.module";
     AppRoutingModule,
     MaterialModule,
     HomeModule,
-    SharedModule
+    SharedModule,
+    AboutModule,
+    LegalNoticeModule,
+    AuthModule,
+    CanvasModule
   ],
 
   // providers are to make services and values known to DI (dependency injection).

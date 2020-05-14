@@ -9,7 +9,7 @@ import {MatInputModule} from '@angular/material/input'
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { TestComponent } from './components/test/test.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 const MaterialComponents =  [
@@ -20,7 +20,8 @@ const MaterialComponents =  [
   MatProgressSpinnerModule,
   MatFormFieldModule,
   MatInputModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatToolbarModule
 ]
 
 @NgModule({

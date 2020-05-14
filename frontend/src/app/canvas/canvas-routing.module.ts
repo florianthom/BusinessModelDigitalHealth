@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ContentComponent } from  "./components/content/content.component";
+import { TableGeneralComponent } from  "./components/table-general/table-general.component";
 
 const routes: Routes = [
-  {
-    path: '', component: ContentComponent
-  }
+  { path: 'overview', component: TableGeneralComponent}
 ];
 
 @NgModule({
@@ -13,4 +11,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 
-export class HomeRoutingModule { }
+export class CanvasRoutingModule { }
