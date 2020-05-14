@@ -9,3 +9,25 @@ node app.js
 // starts asp.net core application
 // dotnet watch run possible
 dotnet run
+
+
+// ANGULAR THINGS
+
+//concepts
+// core components: module, component, service, interface, module
+// =framework for building SPAs, build on "NgModules"
+
+// angular add-package
+ng add @angular/material
+
+// angular add module
+// module=provide compilation context for components
+ng g m material // anuglar generate module called material
+
+// angular services
+// provide functions for components (if they import the service)
+
+
+// angular components
+// components define views, which are sets of screen elements
+// each component=1 class logic (.ts), 1 class data (.css), 1 view template (.html)
