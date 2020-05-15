@@ -1,0 +1,5 @@
+2. git repo eröffnen
+front oder back end dort hin moven
+backend simpel erstellen mit 1 Abfrage
+2 heroku account erstellen
+heroku pushen
