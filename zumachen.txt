@@ -1,5 +1,33 @@
-2. git repo eröffnen
-front oder back end dort hin moven
-backend simpel erstellen mit 1 Abfrage
-2 heroku account erstellen
+zu machen:
+
+-------------------- erm anpassen
+
+server weitermachen
+	+ typescript integrieren
+	+ initiale struktur
+	+ prob needed packages installieren
+	+ umgebungsvariablen
+	+ app.js vervollständigen
+
+server mit fronend verbinden mit simpler rest anfrage
+	- in semantiv search projekt gucken und gucken ob mit oder ohne router machen
+
+stand saven für später
+
+test-rest-anfrage wieder auflösen
+
+postgre mit prisma instalieren
+
+erm struktur anbinden
+
+datenbank testdaten erstellen
+
+stefan fragen, ob er apollo graphql in fronend und oder backend benutzt
+
+apollo server mit graphql installieren
+
+gucken ob soweit funktioniert mit der datenabfrage
+
 heroku pushen
+
+frontend drag and drop erstellen

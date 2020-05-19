@@ -134,7 +134,8 @@ import {CanvasModule} from "./canvas/canvas.module";
     AboutModule,
     LegalNoticeModule,
     AuthModule,
-    CanvasModule
+    CanvasModule,
+    CoreModule
   ],
 
   // providers are to make services and values known to DI (dependency injection).
