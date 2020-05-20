@@ -2,19 +2,19 @@ zu machen:
 
 -------------------- erm anpassen
 
-server weitermachen
+--------------------server weitermachen
 	+ typescript integrieren
 	+ initiale struktur
 	+ prob needed packages installieren
 	+ umgebungsvariablen
 	+ app.js vervollständigen
 
-server mit fronend verbinden mit simpler rest anfrage
-	- in semantiv search projekt gucken und gucken ob mit oder ohne router machen
+--------------------server mit fronend verbinden mit simpler rest anfrage
+	+ in semantiv search projekt gucken und gucken ob mit oder ohne router machen
 
-stand saven für später
+-----------------------stand saven für später
 
-test-rest-anfrage wieder auflösen
+-----------------------test-rest-anfrage wieder auflösen
 
 postgre mit prisma instalieren
 

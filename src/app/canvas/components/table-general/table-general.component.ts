@@ -10,11 +10,19 @@ import { TestService} from "../../../core/services/test.service";
 export class TableGeneralComponent implements OnInit {
 
   testObject : Test;
-
+  
+  /* 
   constructor(private testService : TestService) { }
+ */
+
+  constructor() { }
 
   ngOnInit(): void {
+
+    /* 
     this.testService.getExampleData().subscribe(incommingData => {this.testObject = incommingData});
+     */
+
   }
 
 }
