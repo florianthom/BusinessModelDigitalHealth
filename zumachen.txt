@@ -16,17 +16,18 @@ zu machen:
 
 -----------------------test-rest-anfrage wieder auflösen
 
-postgre mit prisma instalieren
+----------------------postgre mit prisma instalieren
 
-erm struktur anbinden
+----------------------erm struktur anbinden
 
-datenbank testdaten erstellen
+----------------------datenbank testdaten erstellen
 
-stefan fragen, ob er apollo graphql in fronend und oder backend benutzt
+-----------------------stefan fragen, ob er apollo graphql in fronend und oder backend benutzt
 
-apollo server mit graphql installieren
+-----------------------apollo server mit graphql installieren
 
-gucken ob soweit funktioniert mit der datenabfrage
+
+-----------------------gucken ob soweit funktioniert mit der datenabfrage
 
 heroku pushen
 
