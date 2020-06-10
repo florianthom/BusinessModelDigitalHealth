@@ -1,0 +1,17 @@
+query getCanvas($id: ID!) {
+  getCanvas(id: $id) {
+    id
+    name
+    createdAt
+    updatedAt
+  }
+}
+
+query getAllCanvases {
+  getAllCanvases {
+    id
+    name
+    createdAt
+    updatedAt
+  }
+}

@@ -1,6 +1,7 @@
 // root of all components aka root-component
 
 import { Component } from '@angular/core';
+import {UserGqlService} from "@app/core/services/user-gql.service";
 
 @Component({
   selector: 'app-root',
@@ -10,4 +11,10 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
 
+  /**
+   *
+   */
+  constructor(public userService: UserGqlService) {
+    this.userService.logoutUser();
+  }
 }

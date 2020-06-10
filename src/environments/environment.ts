@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api_url: 'http://localhost:5000/api/v1'
+  api_url: "http://localhost:5000/graphql" //"https://digital-health-backend.herokuapp.com/graphql" //'http://localhost:5000/api/v1'
 };
 
 /*

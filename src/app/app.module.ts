@@ -103,7 +103,9 @@ import {AboutModule} from "./about/about.module";
 import {LegalNoticeModule} from "./legal-notice/legal-notice.module";
 import {AuthModule} from "./auth/auth.module";
 import {CanvasModule} from "./canvas/canvas.module";
-
+import { GraphQLModule } from './graphql/graphql.module';
+/* import { HttpClientModule } from '@angular/common/http';
+ */
 
 
 
@@ -135,7 +137,9 @@ import {CanvasModule} from "./canvas/canvas.module";
     LegalNoticeModule,
     AuthModule,
     CanvasModule,
-    CoreModule
+    CoreModule,
+    GraphQLModule/* ,
+    HttpClientModule */
   ],
 
   // providers are to make services and values known to DI (dependency injection).

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Test } from "../../../shared/models/test.model";
 import { TestService} from "../../../core/services/test.service";
+import {CanvasService} from "@app/core/services/canvas.service";
+import { Canvas } from '@app/graphql/generated/graphql';
 
 @Component({
   selector: 'app-table-general',
@@ -9,20 +11,19 @@ import { TestService} from "../../../core/services/test.service";
 })
 export class TableGeneralComponent implements OnInit {
 
-  testObject : Test;
+  canvases : Array<Object> ;
+
+  constructor(private canvasService: CanvasService)
+  {
+    
+  }
+
+
   
-  /* 
-  constructor(private testService : TestService) { }
- */
 
-  constructor() { }
-
-  ngOnInit(): void {
-
-    /* 
-    this.testService.getExampleData().subscribe(incommingData => {this.testObject = incommingData});
-     */
-
+  ngOnInit()
+  {
+    this.canvasService.getAllCanvases().subscribe(incommingData => {this.canvases = incommingData});
   }
 
 }

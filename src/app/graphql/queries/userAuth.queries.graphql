@@ -1,0 +1,19 @@
+query loginUser($email: String!, $password: String!) {
+  login(email: $email, password: $password) {
+    token
+    user {
+      id
+    }
+  }
+}
+
+
+query checkEmail($email: String!) {
+  checkEmailAddress(email: $email)
+}
+
+mutation registerUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
+  registrate(data: {firstName: $firstName ,lastName: $lastName, email: $email, password: $password}) {
+    id
+  }
+}
