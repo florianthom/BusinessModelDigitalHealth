@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TableGeneralComponent } from  "./components/table-general/table-general.component";
+import {CanvasComponent} from "./components/canvas/canvas.component";
 
 const routes: Routes = [
-  { path: 'overview', component: TableGeneralComponent}
+  { path: 'overview', component: CanvasComponent}
 ];
 
 @NgModule({

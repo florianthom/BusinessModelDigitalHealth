@@ -15,6 +15,7 @@ export class AppComponent {
    *
    */
   constructor(public userService: UserGqlService) {
-    this.userService.logoutUser();
+    //this.userService.logoutUser();
   }
 }
+

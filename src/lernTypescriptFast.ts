@@ -2,9 +2,9 @@
 
 //playground: https://www.typescriptlang.org/play/
 
-// let > var, since its saver
+let > var, since its saver
 
-console.log(something)
+console.log("something")
 
 // There are 3 basic types in TypeScript
 let isDone: boolean = false;
