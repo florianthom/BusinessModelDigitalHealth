@@ -5,12 +5,14 @@ import { FooterComponent } from './layout/components/footer/footer.component';
 import {MaterialModule} from "../material/material.module";
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { SidenavComponent } from './layout/components/sidenav/sidenav.component';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SidenavComponent
   ],
   imports: [
     CommonModule,
