@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './layout/components/header/header.component';
 import { FooterComponent } from './layout/components/footer/footer.component';
-import {MaterialModule} from "../material/material.module";
+import { MaterialModule} from "../material/material.module";
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { SidenavComponent } from './layout/components/sidenav/sidenav.component';
@@ -22,7 +22,8 @@ import { SidenavComponent } from './layout/components/sidenav/sidenav.component'
   ],
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SidenavComponent
   ]
 })
 export class SharedModule { }

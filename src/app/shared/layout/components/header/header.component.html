@@ -1,12 +1,17 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="adjust-height mat-elevation-z4">
     <div>
-        <a routerLink="/home">Name</a>
+        <img src="assets/logo2.svg" width="75" height="50">
+    </div>
+    <div>
+        <a routerLink="/home" class="color-text-white">
+            <h1>HealthCareCareer.com</h1>
+        </a>
     </div>
 
     <!-- This fills the remaining space of the current row -->
     <span class="example-fill-remaining-space"></span>
 
-    <a routerLink="/home">Home</a>
+    <!-- <a routerLink="/home">Home</a>
 
     <a routerLink="/canvas/overview">Arbeitsfläche</a>
 
@@ -18,7 +23,41 @@
 
     <a routerLink="/auth/login">Sign in</a>
 
-    <a routerLink="/auth/register">Sign up</a>
+    <a routerLink="/auth/register">Sign up</a> -->
 
-  </mat-toolbar>
+    <div class="color-text-white">
+        {{titleService.title.getTitle()}}
+    </div>
 
+    <span class="example-fill-remaining-space"></span>
+
+    <div class="example-button-container">
+        <button mat-mini-fab color="primary" class="button-size">
+            <mat-icon class="material-icons-outlined nav-header-icon">search</mat-icon>
+        </button>
+    </div>
+    <div class="example-button-container">
+        <button mat-mini-fab color="primary" class="button-size">
+            <mat-icon class="material-icons-outlined nav-header-icon">notifications</mat-icon>
+        </button>
+    </div>
+    <div class="example-button-container">
+        <button mat-mini-fab color="primary" class="button-size">
+            <mat-icon class="material-icons-outlined nav-header-icon">email</mat-icon>
+        </button>
+    </div>
+
+
+    <div class="nav-header-user-name">Hello Luke</div>
+    <div class="example-button-container">
+        <button mat-mini-fab color="primary" class="button-size">
+            <mat-icon class="material-icons-outlined nav-header-user-icon">account_circle</mat-icon>
+        </button>
+    </div>
+    <div class="example-button-container">
+        <button mat-mini-fab color="primary" class="button-size">
+            <mat-icon class="material-icons-outlined nav-header-icon">more_vert</mat-icon>
+        </button>
+    </div>
+
+</mat-toolbar>

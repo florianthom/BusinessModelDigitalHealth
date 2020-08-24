@@ -19,12 +19,17 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
-            "assets": ["src/_redirects"],
+            "assets": [
+              "src/_redirects",
+              "src/assets",
+              "src/assets/",
+              "src/assets/*",
+              "src/assets/logo2.svg"
+            ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css",
-              "src/theme.scss"
-            ],
+              "src/theme.scss"            ],
             "scripts": []
           },
           "configurations": {
@@ -89,8 +94,7 @@
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css",
-              "src/theme.scss"
-            ],
+              "src/theme.scss"            ],
             "scripts": []
           }
         },

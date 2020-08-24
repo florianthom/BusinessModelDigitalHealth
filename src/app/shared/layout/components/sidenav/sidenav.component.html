@@ -1,1 +1,108 @@
-<p>sidenav works!</p>
+
+<mat-sidenav-container class="example-container">
+
+
+  <mat-sidenav #drawer mode="side" opened role="navigation">
+
+    <mat-list>
+      <!-- <a routerLink="/home" class="remove-textdecoration"> <mat-list-item>Dashboard</mat-list-item></a> -->
+      <mat-list-item>
+        <mat-icon class="material-icons-outlined nav-icon">dashboard</mat-icon>
+        <span>Dashboard</span>
+      </mat-list-item>
+    </mat-list>
+
+    <mat-nav-list>
+      <mat-divider role="separator" class="mat-divider mat-divider-horizontal" aria-orientation="horizontal"></mat-divider>
+      
+      <!-- General Infos-->
+      <a mat-list-item routerLink="/home" class="margin-top">
+        <div>
+          <mat-icon class="material-icons-outlined nav-icon">home</mat-icon>
+          <span>Overview</span>
+      </div>
+      </a>
+      <mat-nav-list class="margin-left">
+        <a mat-list-item routerLink="/home">
+          <mat-icon class="material-icons-outlined nav-icon">grain</mat-icon>
+          <span>Business Model Pattern</span>
+        </a>
+        <a mat-list-item routerLink="/home">
+          <mat-icon class="material-icons-outlined nav-icon">grid_on</mat-icon>
+          <span>Business Model Canvas</span>
+        </a>
+      </mat-nav-list>
+
+      <!-- Your Workspace-->
+      <a mat-list-item routerLink="/home" class="margin-top">
+        <mat-icon class="material-icons-outlined nav-icon">home_work</mat-icon>
+        <span>Your Workspace</span>
+      </a>
+      <mat-nav-list class="margin-left">
+        <a mat-list-item routerLink="/home">
+          <mat-icon class="material-icons-outlined nav-icon">work_outline</mat-icon>
+          <span>Projects</span>
+        </a>
+        <a mat-list-item routerLink="/canvas/overview">
+          <mat-icon class="material-icons-outlined nav-icon">table_chart</mat-icon>
+          <span>Your Canvases</span>
+        </a>
+        <a mat-list-item routerLink="/home">
+          <mat-icon class="material-icons-outlined nav-icon">notes</mat-icon>
+          <span>Your Notes</span>
+        </a>
+      </mat-nav-list>
+
+
+      <!-- How it works-->
+      <a mat-list-item routerLink="/home" class="margin-top">
+        <mat-icon class="material-icons-outlined nav-icon">insights</mat-icon>
+        <span>How it works</span>
+      </a>
+      <mat-nav-list class="margin-left">
+        <a mat-list-item routerLink="/home">
+          <mat-icon class="material-icons-outlined nav-icon">calculate</mat-icon>
+          <span>Fundamentals</span>
+        </a>
+        <a mat-list-item routerLink="/home">
+          <mat-icon class="material-icons-outlined nav-icon">functions</mat-icon>
+          <span>Algorithm 1</span>
+        </a>
+      </mat-nav-list>
+
+      <mat-divider role="separator" class="mat-divider mat-divider-horizontal" aria-orientation="horizontal"></mat-divider>
+
+      <a mat-list-item routerLink="/home" class="margin-top">
+        <mat-icon class="material-icons-outlined nav-icon">functions</mat-icon>
+        <span>Settings</span>
+      </a>
+      <a mat-list-item routerLink="/home" class="margin-top">
+        <mat-icon class="material-icons-outlined nav-icon">equalizer</mat-icon>
+        <span>Signout</span>
+      </a>
+
+      <mat-divider role="separator" class="mat-divider mat-divider-horizontal" aria-orientation="horizontal"></mat-divider>
+    </mat-nav-list>
+
+      <mat-list>
+        <mat-list-item>
+          <div class="development-banner">DEVELOPMENT VERSION</div>
+        </mat-list-item>
+        <mat-list-item>
+          <div class="development-banner">version: 0.1</div>
+        </mat-list-item>
+
+      </mat-list>
+
+  </mat-sidenav>
+
+
+  <mat-sidenav-content>
+    <div class="adjust-content">
+      <router-outlet></router-outlet>
+    </div>
+    <app-layout-footer></app-layout-footer>
+  </mat-sidenav-content>
+
+
+</mat-sidenav-container>

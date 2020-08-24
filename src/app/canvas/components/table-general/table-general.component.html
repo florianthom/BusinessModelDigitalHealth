@@ -1,14 +1,20 @@
 <div>
-    <p>table-general works!</p>
-
-
-
-
-    <div *ngFor="let canvas of canvases">
-        {{canvas.name}}
+    <h3>Business Model Canvas</h3>
+    <div class="table-background">
+        <mat-grid-list cols="3" rowHeight="2:1">
+            <mat-grid-tile
+                *ngFor="let tile of tiles"
+                [colspan]="tile.cols"
+                [rowspan]="tile.rows"
+            >
+                {{tile.text}}
+            </mat-grid-tile>
+        </mat-grid-list>
     </div>
-    
-
-
-    
 </div>
+
+
+
+    <!-- <div *ngFor="let canvas of canvases">
+        {{canvas.name}}
+    </div> -->

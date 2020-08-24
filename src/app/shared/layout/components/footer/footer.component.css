@@ -1,0 +1,95 @@
+
+footer {
+    /* color defined in scss */
+    /* border-top: 1px solid #bbb; */
+    /* height: 200px; */
+}
+
+.footer-content {
+    /* line-height: 200px; */
+    height: 200px;
+    /* border: 3px solid green; */
+    text-align: center;
+    color: #ffffff;
+    padding: 20px;
+
+    
+}
+
+.footer-content p {
+    line-height: 1.5;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.bigger-font {
+    font-size: 20px;
+}
+
+#wrapper {
+    display: flex;
+}
+
+#left {
+    flex: 0 0 65%;
+}
+
+#right {
+    flex: 1;
+}
+
+#left2 {
+    flex: 0 0 50%;
+}
+
+#right2 {
+    flex: 1;
+}
+
+.center-button {
+    display: block;
+    margin: auto;
+}
+
+.adjust-button {
+    width: 200px;
+    height: 50px;
+    border-radius: 30px;
+}
+
+.wrapper2 {
+    padding-top: 50px;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+.test1 {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.footer-link-items {
+    display:inline-block;
+    *display:inline; /*IE7*/
+    *zoom:1; /*IE7*/
+    color:grey;
+    margin-right: 100px;
+    
+}
+
+.footer-links {
+    padding-top: 50px;
+    text-decoration:none;
+    color: grey;
+    display: inline-block;
+
+
+}
+.wrapper3 {
+    text-align: center;
+}
+
+.copyright-text {
+    padding-top: 50px;
+    color: grey;
+}

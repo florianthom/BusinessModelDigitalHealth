@@ -1,0 +1,12 @@
+mat-grid-tile {
+    background: lightblue;
+}
+
+.table-background {
+    background: grey;
+    /* margin: 100px; */
+    padding: 5px;
+    border-radius: 5px;
+
+
+}

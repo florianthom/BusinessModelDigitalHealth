@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {CanvasComponent} from "./components/canvas/canvas.component";
 
 const routes: Routes = [
-  { path: 'overview', component: CanvasComponent}
+  { path: 'overview', component: CanvasComponent, data: {title: "Workspace"}}
 ];
 
 @NgModule({

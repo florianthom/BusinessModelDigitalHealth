@@ -43,12 +43,14 @@
 </div>
 
 <div>
-    <mat-button-toggle-group #toggleGroup="matButtonToggleGroup">
+    <!-- <mat-button-toggle-group #toggleGroup="matButtonToggleGroup"> -->
+        <mat-button-toggle-group>
+
         <mat-button-toggle value="angular">Angular</mat-button-toggle>
         <mat-button-toggle value="react">React</mat-button-toggle>
         <mat-button-toggle value="vue">Vue</mat-button-toggle>
     </mat-button-toggle-group>
-    {{toggleGroup.value}}
+    <!-- {{toggleGroup.value}} -->
 </div>
 
 <!-- Icons -->
@@ -78,5 +80,5 @@
 <mat-form-field matTooltip="Welcome to here" floatLabel="auto" hideRequiredMarker appearance="outline"> <!-- legacy / standart / fill / outline-->
     <mat-label>Name</mat-label>
     <input matInput required>
-    <mat-hint align="end">Min 5 characters</mat-hint>
+    <!-- <mat-hint align="end">Min 5 characters</mat-hint> -->
 </mat-form-field>

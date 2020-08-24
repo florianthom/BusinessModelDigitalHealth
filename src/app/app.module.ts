@@ -87,10 +87,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 
-
-
-
-
 import { MaterialModule } from './material/material.module';
 import {HomeModule} from "./home/home.module";
 // cant be imported into every feature module
@@ -104,6 +100,9 @@ import {LegalNoticeModule} from "./legal-notice/legal-notice.module";
 import {AuthModule} from "./auth/auth.module";
 import {CanvasModule} from "./canvas/canvas.module";
 import { GraphQLModule } from './graphql/graphql.module';
+import { TitleService } from './core/services/title.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 /* import { HttpClientModule } from '@angular/common/http';
  */
 
@@ -129,6 +128,7 @@ import { GraphQLModule } from './graphql/graphql.module';
   // imports makes the exported declarations of other modules available in the current module
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     MaterialModule,
     HomeModule,
@@ -138,7 +138,8 @@ import { GraphQLModule } from './graphql/graphql.module';
     AuthModule,
     CanvasModule,
     CoreModule,
-    GraphQLModule/* ,
+    GraphQLModule,
+    /* ,
     HttpClientModule */
   ],
 

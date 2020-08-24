@@ -4,8 +4,8 @@ import { LoginComponent } from  "./components/login/login.component";
 import { RegistrateComponent } from  "./components/registrate/registrate.component";
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent},
-  { path: 'register', component: RegistrateComponent}
+  { path: 'login', component: LoginComponent, data: {title: "Signin"}},
+  { path: 'register', component: RegistrateComponent, data: {title: "Register"}}
 ];
 
 @NgModule({
