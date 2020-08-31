@@ -1,12 +1,27 @@
-mat-grid-tile {
-    background: lightblue;
+.canvas-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1em;
+    grid-template-rows: 1fr 1fr 1fr;
 }
 
-.table-background {
-    background: grey;
-    /* margin: 100px; */
-    padding: 5px;
-    border-radius: 5px;
+/*  GO Two Colum BELOW 480 PIXELS */
+/* @media only screen and (max-width: 1000px) {
+
+} */
 
 
+
+@media only screen and (max-width: 1279px) {
+    /* For desktop: */
+    .canvas-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+}
+
+@media only screen and (max-width: 960px) {
+    /* For mobile: */
+    .canvas-container {
+        grid-template-columns: repeat(1, 1fr);
+      }
 }

@@ -9,3 +9,38 @@
 #right {
     flex: 1;
 }
+
+.top-content-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+}
+
+.top-content-container-items {
+    flex: 0 40%;
+    /* flex: 3 0.5 40%; */
+    padding-left: 10px;
+    padding-right: 10px;
+
+    
+    /* border: red solid; */
+    box-sizing:border-box;
+}
+
+
+.next-to-canvas-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.next-to-canvas-container-item {
+    margin-bottom: 30px;
+    margin-top: 10px;
+    /* margin-bottom: 100px; */
+
+}

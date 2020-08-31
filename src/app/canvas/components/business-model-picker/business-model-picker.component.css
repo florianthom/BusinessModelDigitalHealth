@@ -1,0 +1,21 @@
+.business-model-picker-frame {
+    border: grey solid;
+    border-width: 5px;
+    border-radius: 5px;
+}
+
+.selector-container {
+    max-height: 300px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* background: lightcoral; */
+    overflow-y: auto;
+
+}
+
+.selector-item {
+    padding: 10px;
+    /* flex: 1; */
+}

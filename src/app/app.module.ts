@@ -102,6 +102,8 @@ import {CanvasModule} from "./canvas/canvas.module";
 import { GraphQLModule } from './graphql/graphql.module';
 import { TitleService } from './core/services/title.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { CanvasCardComponent } from './canvas/components/canvas-card/canvas-card.component';
 
 /* import { HttpClientModule } from '@angular/common/http';
  */
@@ -139,6 +141,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CanvasModule,
     CoreModule,
     GraphQLModule,
+    FlexLayoutModule
     /* ,
     HttpClientModule */
   ],

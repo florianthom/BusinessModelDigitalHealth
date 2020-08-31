@@ -1,20 +1,76 @@
-<div>
+
+<!-- <div fxLayout="column" fxLayoutGap="32px">
+    <app-canvas-card></app-canvas-card>
+    <app-canvas-card></app-canvas-card>
+    <app-canvas-card></app-canvas-card>
+</div> -->
+
+<!-- 
+<div 
+  fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+  <ng-container *ngFor="let _ of [1,2,3,4,5,6]">
+    <app-canvas-card fxFlex="0 1 calc(33.3% - 32px)">></app-canvas-card>
+  </ng-container>
+</div> -->
+
+
+
+<!-- <div 
+  fxLayout="row wrap" 
+  fxLayout.lt-sm="column" 
+  fxLayoutGap="5px grid" 
+  fxLayoutAlign="flex-start"
+>
+    <ng-container *ngFor="let canvasCell of canvas">
+        <app-canvas-card
+            [canvasCell] = "canvasCell"
+            fxFlex="0 1 calc(33.3% - 32px)"
+            fxFlex.lt-md="0 1 calc(50% - 5px)"
+            fxFlex.lt-sm="100%"
+        ></app-canvas-card>
+    </ng-container>
+</div> -->
+
+
+        <div class="canvas-container">
+            <app-canvas-card *ngFor="let canvasCell of canvas" [canvasCell] = "canvasCell"></app-canvas-card>
+        </div>
+
+
+
+
+<!-- <div>
     <h3>Business Model Canvas</h3>
     <div class="table-background">
-        <mat-grid-list cols="3" rowHeight="2:1">
+        <mat-grid-list class="more-space-between-cells" [gutterSize]="'3px'" cols="3" rowHeight="2:1">
             <mat-grid-tile
+                class="tile-adjustments"
                 *ngFor="let tile of tiles"
                 [colspan]="tile.cols"
                 [rowspan]="tile.rows"
             >
-                {{tile.text}}
+                 {{tile.text}}
+
+                <mat-grid-tile-header style="background-color: grey;">
+                    <div>
+                        HeaderTitle
+                    </div>
+                </mat-grid-tile-header>
+
+
+
+                <mat-grid-tile-footer style="background-color: white">
+                    <div>
+                        Cell 1/9
+                    </div>
+                </mat-grid-tile-footer>
             </mat-grid-tile>
         </mat-grid-list>
     </div>
-</div>
+</div> -->
 
 
 
-    <!-- <div *ngFor="let canvas of canvases">
-        {{canvas.name}}
-    </div> -->
+<!-- <div *ngFor="let canvas of canvases">
+    {{canvas.name}}
+</div> -->

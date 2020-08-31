@@ -3,13 +3,19 @@ import { Test } from "../../../shared/models/test.model";
 import { TestService} from "../../../core/services/test.service";
 import {CanvasService} from "@app/core/services/canvas.service";
 import { Canvas } from '@app/graphql/generated/graphql';
+import { CanvasCell } from '@app/shared/models/canvas-cell';
 
 
-export interface Tile {
-  cols: number;
-  rows: number;
+export interface Note {
+  text: string;
+  date: string;
+}
+
+export interface BulletPoints {
   text: string;
 }
+
+
 
 @Component({
   selector: 'app-table-general',
@@ -18,20 +24,8 @@ export interface Tile {
 })
 export class TableGeneralComponent implements OnInit {
 
-  canvases : Array<Object> ;
+  canvas : Array<CanvasCell> = [{name: "Value Propositions"}, {name: "2"}, {name: "3"}, {name: "4"}, {name: "5"}, {name: "6"}, {name: "7"}, {name: "8"}, {name: "9"}]
 
-  tiles: Tile[] = [
-    {text: 'One', cols: 1, rows: 1},
-    {text: 'Two', cols: 1, rows: 1},
-    {text: 'Three', cols: 1, rows: 1},
-    {text: 'Four', cols: 1, rows: 1},
-    {text: '5', cols: 1, rows: 1},
-    {text: '6', cols: 1, rows: 1},
-    {text: '7', cols: 1, rows: 1},
-    {text: '8', cols: 1, rows: 1},
-    {text: '9', cols: 1, rows: 1},
-
-  ];
 
   constructor(private canvasService: CanvasService)
   {

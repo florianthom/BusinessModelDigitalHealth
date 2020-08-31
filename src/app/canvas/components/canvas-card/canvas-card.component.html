@@ -1,0 +1,63 @@
+<!-- <div class="card">Card: {{name}}</div> -->
+
+<div class="canvas-card">
+    <!-- <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" style="width:100%"> -->
+    <div class="canvas-card-container">
+
+
+        <div class="canvas-card-header">
+            {{canvasCell.name}}
+            <hr>
+        </div>
+
+
+        
+        <div class="canvas-card-content">
+            <div class="system-points">
+                <ul>
+                    <li></li>
+                </ul>
+            </div>
+            <hr class="points-dividing-hr">
+            <div class="user-points">
+                <ul>
+                    <li>
+                        <form>
+                            <mat-form-field appearance="none">
+                              <mat-label>your next point</mat-label>
+                              <input matInput #message maxlength="256" placeholder="Ex. I need help with...">
+                            </mat-form-field>
+                          </form>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+
+
+
+        <div class="canvas-card-footer">
+            <div class="footer-left">
+                Cell X/Y
+            </div>
+            <div class="footer-right">
+                <div class="flex-right">
+                    <a mat-list-item routerLink="#">
+                        <mat-icon class="material-icons-outlined nav-icon">zoom_in</mat-icon>
+                    </a>
+                    <a mat-list-item routerLink="#">
+                        <mat-icon class="material-icons-outlined nav-icon">save</mat-icon>
+                    </a>
+                    <a mat-list-item routerLink="#">
+                        <mat-icon class="material-icons-outlined nav-icon">settings</mat-icon>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+  </div>

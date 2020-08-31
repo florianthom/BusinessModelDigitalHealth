@@ -5,19 +5,26 @@ import { TableGeneralComponent } from './components/table-general/table-general.
 import { DistanceMatrixComponent } from './components/distance-matrix/distance-matrix.component';
 import { CanvasComponent } from './components/canvas/canvas.component';
 import { MaterialModule } from "@app/material/material.module";
-// import {SharedModule} from "./shared/shared.module";
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { CanvasCardComponent } from './components/canvas-card/canvas-card.component';
+import { BusinessModelPickerComponent } from './components/business-model-picker/business-model-picker.component';
+import { BusinessModelCardComponent } from './components/business-model-card/business-model-card.component';
 
 
 @NgModule({
   declarations: [
     TableGeneralComponent,
     DistanceMatrixComponent,
-    CanvasComponent
+    CanvasComponent,
+    CanvasCardComponent,
+    BusinessModelPickerComponent,
+    BusinessModelCardComponent
   ],
   imports: [
     CommonModule,
     CanvasRoutingModule,
-    MaterialModule
+    MaterialModule,
+    FlexLayoutModule
   ]
 })
 export class CanvasModule { }
