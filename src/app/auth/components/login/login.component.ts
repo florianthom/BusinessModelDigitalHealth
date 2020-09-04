@@ -43,16 +43,14 @@ export class LoginComponent implements OnInit, OnDestroy {
     const email = this.loginForm.get('email').value;
     const password = this.loginForm.get('password').value;
 
-    this.sub = this.userService.loginUser(email, password).subscribe(res => {
-      this.auth.setAuthorization(res.token);
-
-    console.log("\n\n\n\n Token: " + res.token +  "\n\n\n\n");
-
-
-      console.log("\n\n Successful auth \n\n")
-      this.router.navigate(["/home"]);
-    }, error => {
-      this.loginForm.get('password').reset();
+    this.sub = this.userService.loginUser(email, password).subscribe(res =>
+                  {
+                    this.auth.setAuthorization(res.token);
+                    console.log("\n\n\n\n Token: " + res.token +  "\n\n\n\n");
+                    console.log("\n\n Successful auth \n\n")
+                    this.router.navigate(["/home"]);
+                  }, error => {
+                    this.loginForm.get('password').reset();
     });
   }
   

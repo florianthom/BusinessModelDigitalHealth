@@ -8,7 +8,8 @@ const routes: Routes = [
   { path: 'about',   loadChildren: "./about/about.module#AboutModule"},
   { path: 'impressum',   loadChildren: "./legal-notice/legal-notice.module#LegalNoticeModule"},
   { path: 'auth',   loadChildren: "./auth/auth.module#AuthModule"},
-  { path: 'canvas',   loadChildren: "./canvas/canvas.module#CanvasModule"}
+  { path: 'canvas',   loadChildren: "./canvas/canvas.module#CanvasModule"},
+  { path: 'projects',   loadChildren: "./projects/projects.module#ProjectsModule"}
 
 
   //{ path: '**', component: PageNotFoundComponent }

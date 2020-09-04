@@ -1,0 +1,26 @@
+<div class="projects-picker-frame">
+    <h3>Select Your Project</h3>
+
+    <div class="selector-container">
+            <ng-container *ngIf="projects$ | async as projects">
+                <div *ngFor="let project of projects" class="selector-item">
+                    <app-projects-picker-card [project] = "project"></app-projects-picker-card>
+                </div>
+            </ng-container>
+    </div>
+</div>
+
+
+<!--
+
+<div *ngFor='let vehicle of vehicles | async'>
+
+<div *ngIf="projects$ | async as projects, else loading">
+
+<ng-template #loading>
+    <div class="ui active dimmer">
+      <div class="ui large text loader">Vorlagen werden geladen...</div>
+    </div>
+</ng-template>
+
+-->

@@ -11,7 +11,7 @@ import { AuthorizationService}  from './auth.service';
 export class UserGqlService implements OnDestroy {
   private destroy$ = new Subject();
 
-  constructor(private apollo: Apollo,private authService: AuthorizationService, private login: LoginUserGQL, private register: RegisterUserGQL)
+  constructor(private apollo: Apollo, private authService: AuthorizationService, private login: LoginUserGQL, private register: RegisterUserGQL)
   {
     
   }

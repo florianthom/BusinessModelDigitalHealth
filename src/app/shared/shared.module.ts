@@ -6,13 +6,15 @@ import { MaterialModule} from "../material/material.module";
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { SidenavComponent } from './layout/components/sidenav/sidenav.component';
+import { CustomDatepipePipe } from './pipes/custom-datepipe.pipe';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
-    SidenavComponent
+    SidenavComponent,
+    CustomDatepipePipe
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { SidenavComponent } from './layout/components/sidenav/sidenav.component'
   exports: [
     HeaderComponent,
     FooterComponent,
-    SidenavComponent
+    SidenavComponent,
+    CustomDatepipePipe
   ]
 })
 export class SharedModule { }

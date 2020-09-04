@@ -1,0 +1,17 @@
+query getProject($id: ID!) {
+  getProject(id: $id) {
+    id
+    name
+    createdAt
+    updatedAt
+  }
+}
+
+query getAllProjects {
+  getAllProjects {
+    id
+    name
+    createdAt
+    updatedAt
+  }
+}
