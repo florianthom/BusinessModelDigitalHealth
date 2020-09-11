@@ -15,3 +15,81 @@ query getAllCanvases {
     updatedAt
   }
 }
+
+
+query getCanvasesOfUserOfProject($project_id: ID!) {
+  getCanvasesOfUserOfProject(project_id: $project_id)
+  {
+    id
+    name
+    createdAt
+    updatedAt
+  }
+}
+
+query getCanvasOfUser($id: ID!) {
+  getCanvasOfUser(id: $id) {
+    id
+    name
+    createdAt
+    updatedAt
+
+    strategy_id{
+      id
+      name
+    }
+
+    pattern_ids{
+      id
+      name
+    }
+    
+    table_id{
+      actor_entry_ids{
+        text
+        note
+        createdAt
+      }
+      value_proposition_entry_ids{
+        text
+        note
+        createdAt
+      }
+      value_creation_entry_ids{
+        text
+        note
+        createdAt
+      }
+      value_delivery_entry_ids{
+        text
+        note
+        createdAt
+      }
+      revenue_entry_ids{
+        text
+        note
+        createdAt
+      }
+      expense_entry_ids{
+        text
+        note
+        createdAt
+      }
+      network_effect_entry_ids{
+        text
+        note
+        createdAt
+      }
+      technical_infrastructure_entry_ids{
+        text
+        note
+        createdAt
+      }
+      regulatory_entry_ids{
+        text
+        note
+        createdAt
+      }
+    }
+  }
+}

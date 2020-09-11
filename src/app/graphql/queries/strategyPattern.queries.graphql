@@ -1,0 +1,44 @@
+query getWeightBetweenStrategyAndPatternByStrategyIdAndPatternId($pattern_id: ID!, $strategy_id: ID!) {
+  getWeightBetweenStrategyAndPatternByStrategyIdAndPatternId(pattern_id: $pattern_id, strategy_id: $strategy_id) {
+    id
+    weight
+  }
+}
+
+query getWeightBetweenStrategyAndPatternByStrategyId($strategy_id: ID!) {
+  getWeightBetweenStrategyAndPatternByStrategyId(strategy_id: $strategy_id) {
+    id
+    weight
+
+    pattern_id
+    {
+      id
+      name
+    }
+
+    strategy_id
+    {
+      id
+      name
+    }
+  }
+}
+
+query getWeightBetweenStrategyAndPatternByPatternId($pattern_id: ID!) {
+  getWeightBetweenStrategyAndPatternByPatternId(pattern_id: $pattern_id) {
+    id
+    weight
+
+    pattern_id
+    {
+      id
+      name
+    }
+
+    strategy_id
+    {
+      id
+      name
+    }
+  }
+}

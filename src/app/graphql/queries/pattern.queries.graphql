@@ -1,0 +1,39 @@
+query getPattern($id: ID!) {
+  getPattern(id: $id) {
+    id
+    name
+
+    actorWeight
+    valuePropositionWeight
+    valueCreationWeight
+    valueDeliveryWeight
+    revenueWeight
+    expenseWeight
+    networkEffectWeight
+    regulatoryWeight
+    technicalInfrastructureWeight
+
+    createdAt
+    updatedAt
+  }
+}
+
+query getAllPattern {
+  getAllPattern {
+    id
+    name
+
+    actorWeight
+    valuePropositionWeight
+    valueCreationWeight
+    valueDeliveryWeight
+    revenueWeight
+    expenseWeight
+    networkEffectWeight
+    regulatoryWeight
+    technicalInfrastructureWeight
+    
+    createdAt
+    updatedAt
+  }
+}

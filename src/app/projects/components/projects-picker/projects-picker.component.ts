@@ -18,7 +18,7 @@ export class ProjectsPickerComponent implements OnInit {
 
   ngOnInit(): void
   {
-    this.projects$ = this.projectService.getAllProjects();
+    this.projects$ = this.projectService.getAllProjectsOfUser();
   }
 
 }

@@ -9,6 +9,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { CanvasCardComponent } from './components/canvas-card/canvas-card.component';
 import { BusinessModelPickerComponent } from './components/business-model-picker/business-model-picker.component';
 import { BusinessModelCardComponent } from './components/business-model-card/business-model-card.component';
+import { CanvasPickerComponent } from './components/canvasesList/canvas-picker/canvas-picker.component';
+import { CanvasPickerCardComponent } from './components/canvasesList/canvas-picker-card/canvas-picker-card.component';
+import { SharedModule } from "@app/shared/shared.module";
+import { BusinessStrategyPickerComponent } from './components/business-strategy-picker/business-strategy-picker.component';
+import { BusinessStrategyCardComponent } from './components/business-strategy-card/business-strategy-card.component';
+import { DisplayComponent } from './components/display/display.component';
 
 
 @NgModule({
@@ -18,13 +24,19 @@ import { BusinessModelCardComponent } from './components/business-model-card/bus
     CanvasComponent,
     CanvasCardComponent,
     BusinessModelPickerComponent,
-    BusinessModelCardComponent
+    BusinessModelCardComponent,
+    CanvasPickerComponent,
+    CanvasPickerCardComponent,
+    BusinessStrategyPickerComponent,
+    BusinessStrategyCardComponent,
+    DisplayComponent
   ],
   imports: [
     CommonModule,
     CanvasRoutingModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    SharedModule
   ]
 })
 export class CanvasModule { }

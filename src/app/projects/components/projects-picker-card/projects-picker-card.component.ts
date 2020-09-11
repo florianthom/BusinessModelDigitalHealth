@@ -15,7 +15,6 @@ export class ProjectsPickerCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.project.updatedAt
   }
 
 }

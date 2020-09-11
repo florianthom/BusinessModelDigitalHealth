@@ -25,10 +25,16 @@ export type Query = {
   checkEmailAddress: Scalars['Boolean'];
   getUser: User;
   getAllUsers: Array<User>;
+  getUserOfUser: User;
   getProject: Project;
   getAllProjects: Array<Project>;
+  getProjectOfUser: Project;
+  getAllProjectsOfUser: Array<Project>;
   getCanvas: Canvas;
   getAllCanvases: Array<Canvas>;
+  getCanvasOfUser: Canvas;
+  getAllCanvasesOfUser: Array<Canvas>;
+  getCanvasesOfUserOfProject: Array<Canvas>;
   getPattern: Pattern;
   getAllPattern: Array<Pattern>;
   getTable: Table;
@@ -39,7 +45,9 @@ export type Query = {
   getAllStrategies: Array<Strategy>;
   getStrategyPattern: Strategy;
   getAllStrategyPatterns: Array<StrategyPattern>;
-  getWeightBetweenStrategyAndPattern: Array<StrategyPattern>;
+  getWeightBetweenStrategyAndPatternByStrategyIdAndPatternId: StrategyPattern;
+  getWeightBetweenStrategyAndPatternByStrategyId: Array<StrategyPattern>;
+  getWeightBetweenStrategyAndPatternByPatternId: Array<StrategyPattern>;
   getActor: Actor;
   getAllActors: Array<Actor>;
   getValueProposition: ValueProposition;
@@ -134,8 +142,23 @@ export type QueryGetProjectArgs = {
 };
 
 
+export type QueryGetProjectOfUserArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type QueryGetCanvasArgs = {
   id: Scalars['ID'];
+};
+
+
+export type QueryGetCanvasOfUserArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type QueryGetCanvasesOfUserOfProjectArgs = {
+  project_id: Scalars['ID'];
 };
 
 
@@ -164,8 +187,18 @@ export type QueryGetStrategyPatternArgs = {
 };
 
 
-export type QueryGetWeightBetweenStrategyAndPatternArgs = {
+export type QueryGetWeightBetweenStrategyAndPatternByStrategyIdAndPatternIdArgs = {
   strategy_id: Scalars['ID'];
+  pattern_id: Scalars['ID'];
+};
+
+
+export type QueryGetWeightBetweenStrategyAndPatternByStrategyIdArgs = {
+  strategy_id: Scalars['ID'];
+};
+
+
+export type QueryGetWeightBetweenStrategyAndPatternByPatternIdArgs = {
   pattern_id: Scalars['ID'];
 };
 
@@ -6891,6 +6924,93 @@ export type GetAllCanvasesQuery = (
   )> }
 );
 
+export type GetCanvasesOfUserOfProjectQueryVariables = {
+  project_id: Scalars['ID'];
+};
+
+
+export type GetCanvasesOfUserOfProjectQuery = (
+  { __typename?: 'Query' }
+  & { getCanvasesOfUserOfProject: Array<(
+    { __typename?: 'Canvas' }
+    & Pick<Canvas, 'id' | 'name' | 'createdAt' | 'updatedAt'>
+  )> }
+);
+
+export type GetCanvasOfUserQueryVariables = {
+  id: Scalars['ID'];
+};
+
+
+export type GetCanvasOfUserQuery = (
+  { __typename?: 'Query' }
+  & { getCanvasOfUser: (
+    { __typename?: 'Canvas' }
+    & Pick<Canvas, 'id' | 'name' | 'createdAt' | 'updatedAt'>
+    & { strategy_id?: Maybe<(
+      { __typename?: 'Strategy' }
+      & Pick<Strategy, 'id' | 'name'>
+    )>, pattern_ids?: Maybe<Array<(
+      { __typename?: 'Pattern' }
+      & Pick<Pattern, 'id' | 'name'>
+    )>>, table_id: (
+      { __typename?: 'Table' }
+      & { actor_entry_ids?: Maybe<Array<(
+        { __typename?: 'Actor' }
+        & Pick<Actor, 'text' | 'note' | 'createdAt'>
+      )>>, value_proposition_entry_ids?: Maybe<Array<(
+        { __typename?: 'ValueProposition' }
+        & Pick<ValueProposition, 'text' | 'note' | 'createdAt'>
+      )>>, value_creation_entry_ids?: Maybe<Array<(
+        { __typename?: 'ValueCreation' }
+        & Pick<ValueCreation, 'text' | 'note' | 'createdAt'>
+      )>>, value_delivery_entry_ids?: Maybe<Array<(
+        { __typename?: 'ValueDelivery' }
+        & Pick<ValueDelivery, 'text' | 'note' | 'createdAt'>
+      )>>, revenue_entry_ids?: Maybe<Array<(
+        { __typename?: 'Revenue' }
+        & Pick<Revenue, 'text' | 'note' | 'createdAt'>
+      )>>, expense_entry_ids?: Maybe<Array<(
+        { __typename?: 'Expense' }
+        & Pick<Expense, 'text' | 'note' | 'createdAt'>
+      )>>, network_effect_entry_ids?: Maybe<Array<(
+        { __typename?: 'NetworkEffect' }
+        & Pick<NetworkEffect, 'text' | 'note' | 'createdAt'>
+      )>>, technical_infrastructure_entry_ids?: Maybe<Array<(
+        { __typename?: 'TechnicalInfrastructure' }
+        & Pick<TechnicalInfrastructure, 'text' | 'note' | 'createdAt'>
+      )>>, regulatory_entry_ids?: Maybe<Array<(
+        { __typename?: 'Regulatory' }
+        & Pick<Regulatory, 'text' | 'note' | 'createdAt'>
+      )>> }
+    ) }
+  ) }
+);
+
+export type GetPatternQueryVariables = {
+  id: Scalars['ID'];
+};
+
+
+export type GetPatternQuery = (
+  { __typename?: 'Query' }
+  & { getPattern: (
+    { __typename?: 'Pattern' }
+    & Pick<Pattern, 'id' | 'name' | 'actorWeight' | 'valuePropositionWeight' | 'valueCreationWeight' | 'valueDeliveryWeight' | 'revenueWeight' | 'expenseWeight' | 'networkEffectWeight' | 'regulatoryWeight' | 'technicalInfrastructureWeight' | 'createdAt' | 'updatedAt'>
+  ) }
+);
+
+export type GetAllPatternQueryVariables = {};
+
+
+export type GetAllPatternQuery = (
+  { __typename?: 'Query' }
+  & { getAllPattern: Array<(
+    { __typename?: 'Pattern' }
+    & Pick<Pattern, 'id' | 'name' | 'actorWeight' | 'valuePropositionWeight' | 'valueCreationWeight' | 'valueDeliveryWeight' | 'revenueWeight' | 'expenseWeight' | 'networkEffectWeight' | 'regulatoryWeight' | 'technicalInfrastructureWeight' | 'createdAt' | 'updatedAt'>
+  )> }
+);
+
 export type GetProjectQueryVariables = {
   id: Scalars['ID'];
 };
@@ -6912,6 +7032,95 @@ export type GetAllProjectsQuery = (
   & { getAllProjects: Array<(
     { __typename?: 'Project' }
     & Pick<Project, 'id' | 'name' | 'createdAt' | 'updatedAt'>
+  )> }
+);
+
+export type GetAllProjectsOfUserQueryVariables = {};
+
+
+export type GetAllProjectsOfUserQuery = (
+  { __typename?: 'Query' }
+  & { getAllProjectsOfUser: Array<(
+    { __typename?: 'Project' }
+    & Pick<Project, 'id' | 'name' | 'createdAt' | 'updatedAt'>
+  )> }
+);
+
+export type GetStrategyQueryVariables = {
+  id: Scalars['ID'];
+};
+
+
+export type GetStrategyQuery = (
+  { __typename?: 'Query' }
+  & { getStrategy: (
+    { __typename?: 'Strategy' }
+    & Pick<Strategy, 'id' | 'name' | 'description' | 'createdAt' | 'updatedAt'>
+  ) }
+);
+
+export type GetAllStrategiesQueryVariables = {};
+
+
+export type GetAllStrategiesQuery = (
+  { __typename?: 'Query' }
+  & { getAllStrategies: Array<(
+    { __typename?: 'Strategy' }
+    & Pick<Strategy, 'id' | 'name' | 'description' | 'createdAt' | 'updatedAt'>
+  )> }
+);
+
+export type GetWeightBetweenStrategyAndPatternByStrategyIdAndPatternIdQueryVariables = {
+  pattern_id: Scalars['ID'];
+  strategy_id: Scalars['ID'];
+};
+
+
+export type GetWeightBetweenStrategyAndPatternByStrategyIdAndPatternIdQuery = (
+  { __typename?: 'Query' }
+  & { getWeightBetweenStrategyAndPatternByStrategyIdAndPatternId: (
+    { __typename?: 'StrategyPattern' }
+    & Pick<StrategyPattern, 'id' | 'weight'>
+  ) }
+);
+
+export type GetWeightBetweenStrategyAndPatternByStrategyIdQueryVariables = {
+  strategy_id: Scalars['ID'];
+};
+
+
+export type GetWeightBetweenStrategyAndPatternByStrategyIdQuery = (
+  { __typename?: 'Query' }
+  & { getWeightBetweenStrategyAndPatternByStrategyId: Array<(
+    { __typename?: 'StrategyPattern' }
+    & Pick<StrategyPattern, 'id' | 'weight'>
+    & { pattern_id: (
+      { __typename?: 'Pattern' }
+      & Pick<Pattern, 'id' | 'name'>
+    ), strategy_id: (
+      { __typename?: 'Strategy' }
+      & Pick<Strategy, 'id' | 'name'>
+    ) }
+  )> }
+);
+
+export type GetWeightBetweenStrategyAndPatternByPatternIdQueryVariables = {
+  pattern_id: Scalars['ID'];
+};
+
+
+export type GetWeightBetweenStrategyAndPatternByPatternIdQuery = (
+  { __typename?: 'Query' }
+  & { getWeightBetweenStrategyAndPatternByPatternId: Array<(
+    { __typename?: 'StrategyPattern' }
+    & Pick<StrategyPattern, 'id' | 'weight'>
+    & { pattern_id: (
+      { __typename?: 'Pattern' }
+      & Pick<Pattern, 'id' | 'name'>
+    ), strategy_id: (
+      { __typename?: 'Strategy' }
+      & Pick<Strategy, 'id' | 'name'>
+    ) }
   )> }
 );
 
@@ -6995,6 +7204,151 @@ export const GetAllCanvasesDocument = gql`
     document = GetAllCanvasesDocument;
     
   }
+export const GetCanvasesOfUserOfProjectDocument = gql`
+    query getCanvasesOfUserOfProject($project_id: ID!) {
+  getCanvasesOfUserOfProject(project_id: $project_id) {
+    id
+    name
+    createdAt
+    updatedAt
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetCanvasesOfUserOfProjectGQL extends Apollo.Query<GetCanvasesOfUserOfProjectQuery, GetCanvasesOfUserOfProjectQueryVariables> {
+    document = GetCanvasesOfUserOfProjectDocument;
+    
+  }
+export const GetCanvasOfUserDocument = gql`
+    query getCanvasOfUser($id: ID!) {
+  getCanvasOfUser(id: $id) {
+    id
+    name
+    createdAt
+    updatedAt
+    strategy_id {
+      id
+      name
+    }
+    pattern_ids {
+      id
+      name
+    }
+    table_id {
+      actor_entry_ids {
+        text
+        note
+        createdAt
+      }
+      value_proposition_entry_ids {
+        text
+        note
+        createdAt
+      }
+      value_creation_entry_ids {
+        text
+        note
+        createdAt
+      }
+      value_delivery_entry_ids {
+        text
+        note
+        createdAt
+      }
+      revenue_entry_ids {
+        text
+        note
+        createdAt
+      }
+      expense_entry_ids {
+        text
+        note
+        createdAt
+      }
+      network_effect_entry_ids {
+        text
+        note
+        createdAt
+      }
+      technical_infrastructure_entry_ids {
+        text
+        note
+        createdAt
+      }
+      regulatory_entry_ids {
+        text
+        note
+        createdAt
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetCanvasOfUserGQL extends Apollo.Query<GetCanvasOfUserQuery, GetCanvasOfUserQueryVariables> {
+    document = GetCanvasOfUserDocument;
+    
+  }
+export const GetPatternDocument = gql`
+    query getPattern($id: ID!) {
+  getPattern(id: $id) {
+    id
+    name
+    actorWeight
+    valuePropositionWeight
+    valueCreationWeight
+    valueDeliveryWeight
+    revenueWeight
+    expenseWeight
+    networkEffectWeight
+    regulatoryWeight
+    technicalInfrastructureWeight
+    createdAt
+    updatedAt
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetPatternGQL extends Apollo.Query<GetPatternQuery, GetPatternQueryVariables> {
+    document = GetPatternDocument;
+    
+  }
+export const GetAllPatternDocument = gql`
+    query getAllPattern {
+  getAllPattern {
+    id
+    name
+    actorWeight
+    valuePropositionWeight
+    valueCreationWeight
+    valueDeliveryWeight
+    revenueWeight
+    expenseWeight
+    networkEffectWeight
+    regulatoryWeight
+    technicalInfrastructureWeight
+    createdAt
+    updatedAt
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllPatternGQL extends Apollo.Query<GetAllPatternQuery, GetAllPatternQueryVariables> {
+    document = GetAllPatternDocument;
+    
+  }
 export const GetProjectDocument = gql`
     query getProject($id: ID!) {
   getProject(id: $id) {
@@ -7029,6 +7383,126 @@ export const GetAllProjectsDocument = gql`
   })
   export class GetAllProjectsGQL extends Apollo.Query<GetAllProjectsQuery, GetAllProjectsQueryVariables> {
     document = GetAllProjectsDocument;
+    
+  }
+export const GetAllProjectsOfUserDocument = gql`
+    query getAllProjectsOfUser {
+  getAllProjectsOfUser {
+    id
+    name
+    createdAt
+    updatedAt
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllProjectsOfUserGQL extends Apollo.Query<GetAllProjectsOfUserQuery, GetAllProjectsOfUserQueryVariables> {
+    document = GetAllProjectsOfUserDocument;
+    
+  }
+export const GetStrategyDocument = gql`
+    query getStrategy($id: ID!) {
+  getStrategy(id: $id) {
+    id
+    name
+    description
+    createdAt
+    updatedAt
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetStrategyGQL extends Apollo.Query<GetStrategyQuery, GetStrategyQueryVariables> {
+    document = GetStrategyDocument;
+    
+  }
+export const GetAllStrategiesDocument = gql`
+    query getAllStrategies {
+  getAllStrategies {
+    id
+    name
+    description
+    createdAt
+    updatedAt
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllStrategiesGQL extends Apollo.Query<GetAllStrategiesQuery, GetAllStrategiesQueryVariables> {
+    document = GetAllStrategiesDocument;
+    
+  }
+export const GetWeightBetweenStrategyAndPatternByStrategyIdAndPatternIdDocument = gql`
+    query getWeightBetweenStrategyAndPatternByStrategyIdAndPatternId($pattern_id: ID!, $strategy_id: ID!) {
+  getWeightBetweenStrategyAndPatternByStrategyIdAndPatternId(pattern_id: $pattern_id, strategy_id: $strategy_id) {
+    id
+    weight
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetWeightBetweenStrategyAndPatternByStrategyIdAndPatternIdGQL extends Apollo.Query<GetWeightBetweenStrategyAndPatternByStrategyIdAndPatternIdQuery, GetWeightBetweenStrategyAndPatternByStrategyIdAndPatternIdQueryVariables> {
+    document = GetWeightBetweenStrategyAndPatternByStrategyIdAndPatternIdDocument;
+    
+  }
+export const GetWeightBetweenStrategyAndPatternByStrategyIdDocument = gql`
+    query getWeightBetweenStrategyAndPatternByStrategyId($strategy_id: ID!) {
+  getWeightBetweenStrategyAndPatternByStrategyId(strategy_id: $strategy_id) {
+    id
+    weight
+    pattern_id {
+      id
+      name
+    }
+    strategy_id {
+      id
+      name
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetWeightBetweenStrategyAndPatternByStrategyIdGQL extends Apollo.Query<GetWeightBetweenStrategyAndPatternByStrategyIdQuery, GetWeightBetweenStrategyAndPatternByStrategyIdQueryVariables> {
+    document = GetWeightBetweenStrategyAndPatternByStrategyIdDocument;
+    
+  }
+export const GetWeightBetweenStrategyAndPatternByPatternIdDocument = gql`
+    query getWeightBetweenStrategyAndPatternByPatternId($pattern_id: ID!) {
+  getWeightBetweenStrategyAndPatternByPatternId(pattern_id: $pattern_id) {
+    id
+    weight
+    pattern_id {
+      id
+      name
+    }
+    strategy_id {
+      id
+      name
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetWeightBetweenStrategyAndPatternByPatternIdGQL extends Apollo.Query<GetWeightBetweenStrategyAndPatternByPatternIdQuery, GetWeightBetweenStrategyAndPatternByPatternIdQueryVariables> {
+    document = GetWeightBetweenStrategyAndPatternByPatternIdDocument;
     
   }
 export const LoginUserDocument = gql`

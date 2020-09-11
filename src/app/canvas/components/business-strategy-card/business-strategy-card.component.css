@@ -1,0 +1,81 @@
+.business-strategy-selector-card {
+    border: grey solid;
+    border-width: 1px;
+    border-radius: 5px;
+    background: lightgrey;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+
+}
+
+.business-strategy-selector-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.strategy-card-container {
+    display: grid;
+    /* grid-template-columns: minmax(300px, auto); */
+    grid-template-columns: minmax(300px, auto);
+    grid-gap: 0.1em;
+    /* since we have no content at the moment, the second row got deleted */
+    /* grid-template-rows: 50px minmax(200px, auto) 50px; */
+    grid-template-rows: 50px 50px;
+  }
+  
+  .strategy-card-container > div {
+    padding: 1em;
+  }
+  
+  
+  .strategy-card-header {
+  }
+  
+  .strategy-card-content{
+    
+  }
+  
+   .strategy-card-footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    font-size: 17px;
+  }
+  
+ 
+
+  
+  .flex-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+  
+  .flex-right > a {
+    padding-left: 10px;
+  }
+  
+  .points-dividing-hr {
+    width:50%;
+    margin:0 auto;
+  }
+  
+  
+  
+  ul {
+    padding-left: 2em;
+    /* list-style-type: none; */
+  }
+  
+  a { color: inherit; }
+  
+  
+  
+  hr {
+    border: none;
+    height: 1px;
+    /* Set the hr color */
+    color: #333; /* old IE */
+    background-color: #333; /* Modern Browsers */
+  }
+  
+  

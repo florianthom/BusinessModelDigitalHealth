@@ -1,19 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Test } from "../../../shared/models/test.model";
 import { TestService} from "../../../core/services/test.service";
-import {CanvasService} from "@app/core/services/canvas.service";
-import { Canvas } from '@app/graphql/generated/graphql';
+import {CanvasService} from "@app/canvas/shared/canvas.service";
+import { Canvas, Actor } from '@app/graphql/generated/graphql';
 import { CanvasCell } from '@app/shared/models/canvas-cell';
-
-
-export interface Note {
-  text: string;
-  date: string;
-}
-
-export interface BulletPoints {
-  text: string;
-}
+import { Observable } from 'rxjs';
+import { Table } from '@app/graphql/generated/graphql';
 
 
 
@@ -24,20 +16,31 @@ export interface BulletPoints {
 })
 export class TableGeneralComponent implements OnInit {
 
-  canvas : Array<CanvasCell> = [{name: "Value Propositions"}, {name: "2"}, {name: "3"}, {name: "4"}, {name: "5"}, {name: "6"}, {name: "7"}, {name: "8"}, {name: "9"}]
+  canvasCells : Array<CanvasCell>;
+
+  @Input()
+  canvas1: Canvas;
 
 
-  constructor(private canvasService: CanvasService)
+  constructor()
   {
-    
+
   }
 
 
-  
-
   ngOnInit()
   {
-    // this.canvasService.getAllCanvases().subscribe(incommingData => {this.canvases = incommingData});
+    console.log(this.canvas1);
+    delete this.canvas1.table_id.__typename;
+    const tableOfCanvas = this.canvas1.table_id;
+    
+
+    this.canvasCells = new Array<CanvasCell>();
+    for(let key in tableOfCanvas)
+    {
+      let canvasCell: CanvasCell = {name: key.replace("_entry_ids","").replace("_"," "), bulletPointsUser: tableOfCanvas[key]};
+      this.canvasCells.push(canvasCell);
+    }
   }
 
 }

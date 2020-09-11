@@ -1,0 +1,93 @@
+<div>
+    <div class="row-header">
+        <h3>Your use following Pattern:</h3>
+    </div>
+    <div class="display-row-container">
+
+        <div *ngFor="let currentPattern of currentPatterns" class="display-selector-card">
+            <div class="display-card-container">
+                <div class="display-card-header">
+                    {{currentPattern.name}}
+                    <mat-icon class="material-icons nav-icon" [color]="iconColorSelectBusinessModel" (click)="selectedBusinessModel(currentPattern)">grade</mat-icon>
+                    <hr>
+                </div>
+
+                <!-- <div class="canvas-card-content">
+                </div> -->
+
+
+                <div class="display-card-footer">
+                    <div>
+                        <!-- Examples: A,B,C,... -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <hr class="display-hr-divider">
+
+
+
+
+    <div class="row-header">
+        <h3>Your use following Strategy</h3>
+    </div>
+    <div class="display-row-container">
+        <div class="display-selector-card">
+            <div class="display-card-container">
+                <div class="display-card-header">
+                    {{currentStrategy.name}}
+                    <mat-icon class="material-icons nav-icon" [color]="iconColorSelectBusinessStrategy" (click)="selectedBusinessStrategy(currentStrategy)">grade</mat-icon>
+                    <hr>
+                </div>
+
+                <!-- <div class="canvas-card-content">
+                </div> -->
+
+
+                <div class="display-card-footer">
+                    <div>
+                        <!-- Examples: A,B,C,... -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <hr class="display-hr-divider">
+
+
+
+
+    <div class="row-header">
+        <h3>Your added following Pattern in this Session:</h3>
+    </div>
+
+    <div class="display-row-container">
+        <div *ngFor="let currentPattern of currentPatterns" class="display-selector-card">
+            <div class="display-card-container">
+                <div class="display-card-header">
+                    {{currentPattern.name}}
+                    <hr>
+                </div>
+
+                <!-- <div class="canvas-card-content">
+                </div> -->
+
+
+                <div class="display-card-footer">
+                    <div>
+                        <!-- Examples: A,B,C,... -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

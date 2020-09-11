@@ -5,21 +5,31 @@
     <div class="canvas-card-container">
 
 
-        <div class="canvas-card-header">
-            {{canvasCell.name}}
+        <div class="canvas-card-header capitalize">
+            {{canvasCell.name}} ()
             <hr>
         </div>
 
-
+        
+        
         
         <div class="canvas-card-content">
             <div class="system-points">
-                <ul>
-                    <li></li>
-                </ul>
+                <!-- 
+                    <ul>
+                        <li>
+                            
+                        </li>
+                    </ul>
+                 -->
             </div>
             <hr class="points-dividing-hr">
             <div class="user-points">
+                <ul>
+                    <li *ngFor="let bulletPoint of canvasCell.bulletPointsUser">
+                        {{bulletPoint.text}}
+                    </li>
+                </ul>
                 <ul>
                     <li>
                         <form>

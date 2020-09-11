@@ -1,0 +1,19 @@
+query getStrategy($id: ID!) {
+  getStrategy(id: $id) {
+    id
+    name
+    description
+    createdAt
+    updatedAt
+  }
+}
+
+query getAllStrategies {
+  getAllStrategies {
+    id
+    name
+    description
+    createdAt
+    updatedAt
+  }
+}

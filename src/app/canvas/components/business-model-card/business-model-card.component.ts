@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Pattern } from '@app/graphql/generated/graphql';
 
 @Component({
   selector: 'app-business-model-card',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BusinessModelCardComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  pattern: Pattern
+
+  constructor()
+  {
+    
+  }
 
   ngOnInit(): void {
   }

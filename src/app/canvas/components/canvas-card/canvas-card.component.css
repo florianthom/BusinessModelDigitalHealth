@@ -81,6 +81,20 @@
   margin:0 auto;
 }
 
+.capitalize {
+  text-transform: capitalize;
+}
+
+.system-points {
+  font-size: 13px;
+  line-height: 2.0;
+}
+
+.user-points {
+  font-size: 13px;
+  line-height: 2.0;
+}
+
 
 
 ul {
@@ -99,4 +113,3 @@ hr {
   color: #333; /* old IE */
   background-color: #333; /* Modern Browsers */
 }
-

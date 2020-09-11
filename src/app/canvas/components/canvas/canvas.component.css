@@ -26,7 +26,7 @@
 
     
     /* border: red solid; */
-    box-sizing:border-box;
+    box-sizing: border-box;
 }
 
 
@@ -34,7 +34,7 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
 }
 

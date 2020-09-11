@@ -1,18 +1,41 @@
 <div>
-    <h3>Business Model Canvas</h3>
-    <div class="top-content-container">
-        <div class="top-content-container-items">
-            <app-table-general></app-table-general>
-        </div>
-        <div class="top-content-container-items">
-            <div class="next-to-canvas-container">
-                <div class="next-to-canvas-container-item">
-                    <app-business-model-picker></app-business-model-picker>
+    <ng-container *ngIf="canvas$ | async as canvas">
+         <ng-container *ngIf="patterns$ | async as patterns">
+           <ng-container *ngIf="strategies$ | async as strategies">
+
+                <h3>Distance Matrix</h3>
+                <div class="top-content-container">
+                    <div class="top-content-container-items">
+                        <app-distance-matrix [patterns]="patterns"></app-distance-matrix>
+                    </div>
+                    <div class="top-content-container-items">
+                        <app-display [currentPatterns]="canvas.pattern_ids" [currentStrategy]="canvas.strategy_id"></app-display>
+                    </div>
                 </div>
-                <div class="next-to-canvas-container-item">
-                    <app-distance-matrix></app-distance-matrix>
+
+
+                <h3>Business Model Canvas</h3>
+                <div class="top-content-container">
+                    <div class="top-content-container-items">
+                        <app-table-general [canvas1]="canvas"></app-table-general>
+                    </div>
+                    <div class="top-content-container-items">
+                        <div class="next-to-canvas-container">
+
+                            <div class="next-to-canvas-container-item">
+                                <app-business-strategy-picker [strategies]="strategies"></app-business-strategy-picker>
+                            </div>
+
+                            <div class="next-to-canvas-container-item">
+                                <app-business-model-picker [patterns]="patterns"></app-business-model-picker>
+                            </div>
+
+
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
+
+            </ng-container>
+        </ng-container>
+    </ng-container>
 </div>

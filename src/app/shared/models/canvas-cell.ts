@@ -1,5 +1,7 @@
+import { BulletPoint } from './bullet-point';
+
 export interface CanvasCell {
     name: string;
-    // bulletPointsSystem: BulletPoints;
-    // bulletPointsUser: BulletPoints;
+    // bulletPointsSystem: BulletPoint[];
+    bulletPointsUser: BulletPoint[];
   }
