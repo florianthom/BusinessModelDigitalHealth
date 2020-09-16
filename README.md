@@ -8,8 +8,11 @@ Web-App to explore and build business-model-pattern for your business in public 
 ## Getting Started
 
 ```$ git clone git@github.com:FlorianTh2/BusinessModelDigitalHealth.git```
+
 ```$ cd ./BusinessModelDigitalHealth```
+
 ```$ npm install```
+
 ```$ ng serve --open```
 
 ## Documentation: Angular Modules and Componentes
@@ -56,7 +59,7 @@ Web-App to explore and build business-model-pattern for your business in public 
     - contains cross-module shared things e.g. header, sidenav, footer, models, date-pipe,
 
 
-## Important comamnds
+## Important commands
 * npm run generate: generates graphql-code for the application requires graphql-codegen
 
 
