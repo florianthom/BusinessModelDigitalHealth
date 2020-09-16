@@ -6,6 +6,7 @@
   min-width: 400px;
   max-height: 500px;
   min-height: 500px; */
+  background-color: blueviolet;
 }
 
 .canvas-card:hover {
@@ -27,8 +28,7 @@
   */
   grid-gap: 0.1em;
   /* if text gets bigger than cell, cell will growth in height*/
-  /* grid-auto-rows: ; */
-  grid-template-rows: 50px minmax(200px, auto) 50px;
+  grid-template-rows: 50px minmax(200px,auto) 50px;
 }
 
 .canvas-card-container > div {
@@ -41,7 +41,6 @@
 }
 
 .canvas-card-content{
-  
 }
 
  .canvas-card-footer{

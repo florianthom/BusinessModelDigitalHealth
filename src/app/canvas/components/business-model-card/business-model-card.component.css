@@ -12,7 +12,7 @@
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-.canvas-card-container {
+.business-model-selector-card-container {
     display: grid;
     /* grid-template-columns: minmax(300px, auto); */
     grid-template-columns: minmax(300px, auto);
@@ -22,42 +22,61 @@
     grid-template-rows: 50px 50px;
   }
   
-  .canvas-card-container > div {
+  .business-model-selector-card-container > div {
     padding: 1em;
   }
   
   
-  .canvas-card-header {
+  .business-model-selector-card-header {
   }
   
-  .canvas-card-content{
+  .business-model-selector-card-content{
     
   }
   
-   .canvas-card-footer{
+  .business-model-selector-card-footer{
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     font-size: 17px;
   }
   
- 
-
   
-  .flex-right {
+.footer-right {
+    width: 50%;
+    /* background: #1d1fa1; */
+}
+
+.footer-left {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    /* background: #38a738; */
+}
+
+.flex-right {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-  }
-  
-  .flex-right > a {
+    /* background-color: blue; */
+}
+
+.flex-right > a {
     padding-left: 10px;
-  }
+}
   
   .points-dividing-hr {
     width:50%;
     margin:0 auto;
   }
+
+  .nav-icon {
+    font-size: 30px;
+    vertical-align: bottom;
+    padding-right: 10px;
+    cursor: pointer;
+}
   
   
   

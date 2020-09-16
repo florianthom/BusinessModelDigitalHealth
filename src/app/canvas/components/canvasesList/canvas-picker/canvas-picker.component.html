@@ -2,10 +2,14 @@
     <h3>Select Your Canvas</h3>
 
     <div class="selector-container">
-            <ng-container *ngIf="canvases$ | async as canvases">
+            <ng-container *ngIf="canvases$ | async as canvases, else loading">
                 <div *ngFor="let canvas of canvases" class="selector-item">
                     <app-canvas-picker-card [canvas] = "canvas"></app-canvas-picker-card>
                 </div>
             </ng-container>
     </div>
 </div>
+
+<ng-template #loading>
+    <mat-spinner></mat-spinner>
+</ng-template>

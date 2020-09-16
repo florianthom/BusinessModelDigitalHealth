@@ -1,11 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Test } from "../../../shared/models/test.model";
-import { TestService} from "../../../core/services/test.service";
-import {CanvasService} from "@app/canvas/shared/canvas.service";
-import { Canvas, Actor } from '@app/graphql/generated/graphql';
+import { Canvas, Actor, Pattern } from '@app/graphql/generated/graphql';
 import { CanvasCell } from '@app/shared/models/canvas-cell';
-import { Observable } from 'rxjs';
-import { Table } from '@app/graphql/generated/graphql';
+import { CanvasSharedDataService } from '@app/canvas/shared/canvas-shared-data.service';
 
 
 
@@ -17,12 +13,11 @@ import { Table } from '@app/graphql/generated/graphql';
 export class TableGeneralComponent implements OnInit {
 
   canvasCells : Array<CanvasCell>;
+  canvas: Canvas;
+  currentPatterns: Pattern[];
 
-  @Input()
-  canvas1: Canvas;
 
-
-  constructor()
+  constructor(private canvasSharedDataService: CanvasSharedDataService)
   {
 
   }
@@ -30,17 +25,54 @@ export class TableGeneralComponent implements OnInit {
 
   ngOnInit()
   {
-    console.log(this.canvas1);
-    delete this.canvas1.table_id.__typename;
-    const tableOfCanvas = this.canvas1.table_id;
-    
-
-    this.canvasCells = new Array<CanvasCell>();
-    for(let key in tableOfCanvas)
-    {
-      let canvasCell: CanvasCell = {name: key.replace("_entry_ids","").replace("_"," "), bulletPointsUser: tableOfCanvas[key]};
-      this.canvasCells.push(canvasCell);
-    }
+    this.subscribeCanvasSharedServiceForCurrentCanvas();
+    this.subscribeCanvasSharedServiceForCurrentPatterns();
   }
 
+  subscribeCanvasSharedServiceForCurrentCanvas()
+  {
+    this.canvasSharedDataService.currentCanvasObservable.subscribe( a => {
+      this.canvas = a;
+      this.renderCanvas();
+    })
+  }
+
+  subscribeCanvasSharedServiceForCurrentPatterns()
+  {
+    this.canvasSharedDataService.currentPatternsObservable.subscribe( a => {
+      this.currentPatterns = a;
+      this.renderCanvas();
+    })
+  }
+
+  createPatternPropertyNameString(key: String) : string
+  {
+    let weightPropertyNamePatternTmpList = key.replace("_entry_ids","").split("_")
+    if(weightPropertyNamePatternTmpList[1])
+    {
+      weightPropertyNamePatternTmpList[1] = weightPropertyNamePatternTmpList[1].charAt(0).toUpperCase() + weightPropertyNamePatternTmpList[1].slice(1);
+    }
+    let weightPropertyNamePattern = weightPropertyNamePatternTmpList.join().replace(",", "") + "Weight";
+    return weightPropertyNamePattern;
+  }
+
+  renderCanvas()
+  {
+    if(this.canvas)
+    {
+      const tableOfCanvas = this.canvas.table_id;
+      delete tableOfCanvas.__typename
+      this.canvasCells = new Array<CanvasCell>();
+      for(let key in tableOfCanvas)
+      {
+        this.canvasCells.push(
+            {
+              name: key.replace("_entry_ids","").replace("_"," "),
+              bulletPointsUser: tableOfCanvas[key],
+              weights: this.currentPatterns?.map( a => a[this.createPatternPropertyNameString(key)])
+            }
+        );
+      }
+    }
+  }
 }

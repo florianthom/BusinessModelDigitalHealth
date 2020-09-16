@@ -2,7 +2,7 @@
     <h3>Select Your Project</h3>
 
     <div class="selector-container">
-            <ng-container *ngIf="projects$ | async as projects">
+            <ng-container *ngIf="projects$ | async as projects, else loading">
                 <div *ngFor="let project of projects" class="selector-item">
                     <app-projects-picker-card [project] = "project"></app-projects-picker-card>
                 </div>
@@ -10,17 +10,6 @@
     </div>
 </div>
 
-
-<!--
-
-<div *ngFor='let vehicle of vehicles | async'>
-
-<div *ngIf="projects$ | async as projects, else loading">
-
 <ng-template #loading>
-    <div class="ui active dimmer">
-      <div class="ui large text loader">Vorlagen werden geladen...</div>
-    </div>
+    <mat-spinner></mat-spinner>
 </ng-template>
-
--->

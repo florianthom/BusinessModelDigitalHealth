@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UserGqlService } from './user-gql.service';
+import { AuthService } from './authorization.service';
 
-describe('UserGqlService', () => {
-  let service: UserGqlService;
+describe('AuthService', () => {
+  let service: AuthService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(UserGqlService);
+    service = TestBed.inject(AuthService);
   });
 
   it('should be created', () => {

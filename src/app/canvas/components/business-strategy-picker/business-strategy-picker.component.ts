@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { CanvasSharedDataService } from '@app/canvas/shared/canvas-shared-data.service';
 import { Strategy } from '@app/graphql/generated/graphql';
 
 @Component({
@@ -8,17 +9,17 @@ import { Strategy } from '@app/graphql/generated/graphql';
 })
 export class BusinessStrategyPickerComponent implements OnInit {
 
-  @Input()
   strategies: Strategy[]
-
-  constructor()
+  constructor(private canvasSharedDataService: CanvasSharedDataService)
   {
 
   }
 
   ngOnInit(): void
   {
-
+    this.canvasSharedDataService.strategyObservable.subscribe( a => {
+      this.strategies = a;
+    })
   }
 
 }

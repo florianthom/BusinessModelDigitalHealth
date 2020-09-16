@@ -6,7 +6,7 @@
 
 
         <div class="canvas-card-header capitalize">
-            {{canvasCell.name}} ()
+            {{canvasCell.name}} (<span *ngFor="let weight of canvasCell.weights"> +{{weight}} </span>)
             <hr>
         </div>
 

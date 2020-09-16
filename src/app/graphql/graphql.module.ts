@@ -18,37 +18,20 @@ import { environment } from "@app/../environments/environment";
     CommonModule,
     ApolloModule
   ],
-
-
-/*    
-  providers: [
-    {
-      provide: APOLLO_OPTIONS,
-      useFactory: createApollo,
-      deps: [HttpLink],
-    },
-  ], */
-  
   exports: [ApolloModule, HttpLinkModule]
 })
 
 
-export class GraphQLModule {
-
+export class GraphQLModule
+{
   private errorLink: ApolloLink;
   private wsEndpointLink: WebSocketLink;
   private subscriptionClient: SubscriptionClient;
   private httpEndpointLink: HttpLinkHandler;
   private linkChain: ApolloLink;
 
-
-
   constructor(private apollo: Apollo, private httpLink: HttpLink)
   {
-
-
-
-
     this.httpEndpointLink = httpLink.create({ uri: `${environment.api_url}` });
     
     // create ws link with options like authorization
@@ -69,8 +52,6 @@ export class GraphQLModule {
     this.linkChain = ApolloLink.from([this.httpAuthLink(),this.protocolSplit()]);
     apollo.create({ link: this.linkChain, cache: new InMemoryCache() });
   }
-
-
 
 
   // split: split(boolean-function, link used if return of boolean function is true, link if false)
@@ -115,44 +96,3 @@ export class GraphQLModule {
       }
   )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
-import {NgModule} from '@angular/core';
-import {ApolloModule, APOLLO_OPTIONS} from 'apollo-angular';
-import {HttpLinkModule, HttpLink} from 'apollo-angular-link-http';
-import {InMemoryCache} from 'apollo-cache-inmemory';
-
-const uri = ; // <-- add the URL of the GraphQL server here
-export function createApollo(httpLink: HttpLink) {
-  return {
-    link: httpLink.create({uri}),
-    cache: new InMemoryCache(),
-  };
-}
-
-@NgModule({
-  exports: [ApolloModule, HttpLinkModule],
-  providers: [
-    {
-      provide: APOLLO_OPTIONS,
-      useFactory: createApollo,
-      deps: [HttpLink],
-    },
-  ],
-})
-export class GraphQLModule {}
- */

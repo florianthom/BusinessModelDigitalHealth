@@ -4,4 +4,5 @@ export interface CanvasCell {
     name: string;
     // bulletPointsSystem: BulletPoint[];
     bulletPointsUser: BulletPoint[];
+    weights: number[];
   }

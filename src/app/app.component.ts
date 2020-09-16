@@ -2,7 +2,7 @@
 
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
-import {UserGqlService} from "@app/core/services/user-gql.service";
+import { AuthorizationService } from "@app/core/services/authorization.service";
 import { Router } from '@angular/router';
 import { NavigationEnd } from '@angular/router';
 import { Event } from '@angular/router';
@@ -17,11 +17,8 @@ import { TitleService } from './core/services/title.service';
 
 export class AppComponent implements OnInit{
 
-  /**
-   *
-   */
-  constructor(public userService: UserGqlService, public titleService: TitleService) {
-    //this.userService.logoutUser();
+  constructor(public authorizationService: AuthorizationService, public titleService: TitleService) {
+    //this.authorizationService.logoutUser();
   }
 
   ngOnInit() {

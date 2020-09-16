@@ -31,33 +31,67 @@
 
     <span class="example-fill-remaining-space"></span>
 
-    <div class="example-button-container">
-        <button mat-mini-fab color="primary" class="button-size">
-            <mat-icon class="material-icons-outlined nav-header-icon">search</mat-icon>
-        </button>
-    </div>
-    <div class="example-button-container">
-        <button mat-mini-fab color="primary" class="button-size">
-            <mat-icon class="material-icons-outlined nav-header-icon">notifications</mat-icon>
-        </button>
-    </div>
-    <div class="example-button-container">
-        <button mat-mini-fab color="primary" class="button-size">
-            <mat-icon class="material-icons-outlined nav-header-icon">email</mat-icon>
-        </button>
-    </div>
+    <ng-container *ngIf="!user">
+                    <div class="example-button-container">
+                        <button mat-mini-fab color="primary" class="button-size">
+                            <mat-icon class="material-icons-outlined nav-header-icon">search</mat-icon>
+                        </button>
+                    </div>
+                    <div>
+                        <button mat-stroked-button routerLink="/auth/login">
+                            Login
+                        </button>
+                    </div>
+                    <div>
+                        <button mat-stroked-button routerLink="/auth/register">
+                            Register
+                        </button>
+                    </div>
+    </ng-container>
 
 
-    <div class="nav-header-user-name">Hello Luke</div>
-    <div class="example-button-container">
-        <button mat-mini-fab color="primary" class="button-size">
-            <mat-icon class="material-icons-outlined nav-header-user-icon">account_circle</mat-icon>
-        </button>
-    </div>
-    <div class="example-button-container">
-        <button mat-mini-fab color="primary" class="button-size">
-            <mat-icon class="material-icons-outlined nav-header-icon">more_vert</mat-icon>
-        </button>
-    </div>
+    <ng-container *ngIf="user">
+                    <div class="example-button-container">
+                        <button mat-mini-fab color="primary" class="button-size">
+                            <mat-icon class="material-icons-outlined nav-header-icon">search</mat-icon>
+                        </button>
+                    </div>
+                    <div class="example-button-container">
+                        <button mat-mini-fab color="primary" class="button-size">
+                            <mat-icon class="material-icons-outlined nav-header-icon">notifications</mat-icon>
+                        </button>
+                    </div>
+                    <div class="example-button-container">
+                        <button mat-mini-fab color="primary" class="button-size">
+                            <mat-icon class="material-icons-outlined nav-header-icon">email</mat-icon>
+                        </button>
+                    </div>
+                    <div class="nav-header-user-name">Hello {{user.email}}</div>
+                    <div class="example-button-container">
+                        <button mat-mini-fab color="primary" class="button-size">
+                            <mat-icon class="material-icons-outlined nav-header-user-icon">account_circle</mat-icon>
+                        </button>
+                    </div>
+                    <div class="example-button-container">
+                        <button mat-mini-fab color="primary" class="button-size">
+                            <mat-icon class="material-icons-outlined nav-header-user-icon">help_outline</mat-icon>
+                        </button>
+                    </div>
+                    <div class="example-button-container">
+                        <button mat-mini-fab [matMenuTriggerFor]="menu" color="primary" class="button-size">
+                            <mat-icon class="material-icons-outlined nav-header-icon">more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item routerLink="/auth/logout">
+                              <mat-icon>follow_the_signs</mat-icon>
+                              <span>Logout</span>
+                            </button>
+                            <!-- <button mat-menu-item disabled>
+                              <mat-icon>voicemail</mat-icon>
+                              <span>Check voice mail</span>
+                            </button> -->
+                          </mat-menu>
+                    </div>
+    </ng-container>
 
 </mat-toolbar>

@@ -13,8 +13,14 @@
 
 
         <div class="strategy-card-footer">
-            <div>
-                Examples: A,B,C,...
+            <div class="footer-left">
+                
+            </div>
+            <div class="footer-right">
+                <div class="flex-right">
+                    <mat-icon class="nav-icon" [ngClass]="{'material-icons': currentBaseStrategy!=null && strategy.id==currentBaseStrategy.id, 'material-icons-outlined': currentBaseStrategy==null || strategy.id!=currentBaseStrategy.id}" (click)="selectBaseBusinessStrategy(strategy)">grade</mat-icon>
+                    <mat-icon class="nav-icon" (click)="addStrategyToCurrentStrategy(strategy)">add_circle_outline</mat-icon>
+                </div>
             </div>
         </div>
 
@@ -22,7 +28,4 @@
 
 
     </div>
-
-
-
 </div>

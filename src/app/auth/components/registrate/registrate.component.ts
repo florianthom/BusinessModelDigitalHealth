@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PasswordValidatorService } from '@app/auth/services/password-validator.service';
-import { EmailValidatorService } from '@app/auth/services/email-validator.service';
-import { UserGqlService } from '@app/core/services/user-gql.service';
+import { EmailValidatorService } from '@app/core/services/email-validator.service';
+import { AuthorizationService } from '@app/core/services/authorization.service';
 import { Router } from '@angular/router';
 
 
@@ -16,7 +16,13 @@ export class RegistrateComponent implements OnInit {
   
   registerForm: FormGroup;
 
-  constructor(private router: Router, private fb: FormBuilder, private pvs: PasswordValidatorService, private evs: EmailValidatorService, private userService: UserGqlService)
+  constructor
+  (
+    private router: Router,
+    private fb: FormBuilder,
+    private pvs: PasswordValidatorService,
+    private evs: EmailValidatorService,
+    private authorizationService: AuthorizationService)
   {
 
   }
@@ -24,8 +30,6 @@ export class RegistrateComponent implements OnInit {
   ngOnInit() {
     this.createForm();
   }
-
-
 
 
   private createForm() {
@@ -38,17 +42,34 @@ export class RegistrateComponent implements OnInit {
         passwordRepeat: ''
       }, { validators: [this.pvs.passwordEquality]})
     });
-    // Validators.pattern('^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\\D*\\d)[A-Za-z\\d!$%@#£€*?&]{8,}$');
   }
 
   registrate() {
-    const firstname = this.registerForm.get('firstname').value;
-    const lastname = this.registerForm.get('lastname').value;
-    const email = this.registerForm.get('email').value;
-    const password = this.registerForm.get('passwords').get('password').value;
-    this.userService.registerUser(firstname, lastname, email,password);
-    alert('Prüfen Sie ihre Emails!'); // provisorisch
-    this.registerForm.reset();
-    this.router.navigate(["/home"]);
+    this.authorizationService
+      .registerUser(
+          this.registerForm.get('firstname').value,
+          this.registerForm.get('lastname').value,
+          this.registerForm.get('email').value,
+          this.registerForm.get('passwords').get('password').value
+      )
+      .subscribe(
+          response =>
+          {
+            alert('Prüfen Sie ihre Emails!');
+            this.authorizationService
+                .loginUser(
+                  this.registerForm.get('email').value,
+                  this.registerForm.get('passwords').get('password').value
+                )
+                .subscribe(res => {
+                  this.registerForm.reset();
+                  this.router.navigate(["/home"]);
+                });
+          },
+          error =>
+          {
+            alert("Error idk");
+          }
+        );
   }
 }

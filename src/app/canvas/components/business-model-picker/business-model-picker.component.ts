@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { CanvasSharedDataService } from '@app/canvas/shared/canvas-shared-data.service';
 import { Pattern } from '@app/graphql/generated/graphql';
 
 @Component({
@@ -8,17 +9,18 @@ import { Pattern } from '@app/graphql/generated/graphql';
 })
 export class BusinessModelPickerComponent implements OnInit {
 
-  @Input()
   patterns: Pattern[]
 
-  constructor()
+  constructor(private canvasSharedDataService: CanvasSharedDataService)
   {
 
   }
 
   ngOnInit(): void
   {
-    
+    this.canvasSharedDataService.patternObservable.subscribe( a=> {
+      this.patterns = a;
+    })
   }
 
 }

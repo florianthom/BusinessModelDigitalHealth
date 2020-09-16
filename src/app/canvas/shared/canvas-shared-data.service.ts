@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Pattern, Strategy, StrategyPattern } from '@app/graphql/generated/graphql';
+import { Canvas, Pattern, Strategy, StrategyPattern } from '@app/graphql/generated/graphql';
+import { PatternService } from '@app/shared/services/pattern.service';
 import { StrategyPatternService } from '@app/shared/services/strategy-pattern.service';
+import { StrategyService } from '@app/shared/services/strategy.service';
 import { BehaviorSubject } from 'rxjs';
+import { CanvasService } from './canvas.service';
 import { CanvasSharedData } from './models/canvas-shared-data';
 
 @Injectable({
@@ -10,80 +13,135 @@ import { CanvasSharedData } from './models/canvas-shared-data';
 export class CanvasSharedDataService
 {
 
-  // includes the weights for each field in the canvas
-  private currentPattern: Pattern = null;
+  private currentCanvas: Canvas = null;
+  private currentCanvasSource = new BehaviorSubject<Canvas>(this.currentCanvas);
+  currentCanvasObservable = this.currentCanvasSource.asObservable();
+
+  // current (without base) = current pattern(-s) which is/are attached to the current canvas
+  private currentPatterns: Pattern[] = [];
+  private currentPatternsSource = new BehaviorSubject<Pattern[]>(this.currentPatterns);
+  currentPatternsObservable = this.currentPatternsSource.asObservable();
+
   private currentStrategy: Strategy = null;
+  private currentStrategySource = new BehaviorSubject<Strategy>(this.currentStrategy);
+  currentStrategyObservable = this.currentStrategySource.asObservable();
 
-  private initialMessage: CanvasSharedData = {currentPattern: this.currentPattern, currentStrategy: this.currentStrategy, weightsBetweenPatternAndStrategy: null};
-  private messageSource = new BehaviorSubject<CanvasSharedData>(this.initialMessage);
-  currentMessage = this.messageSource.asObservable();
+  // includes the weights for each field in the canvas
+  // currentBase = pattern/strategy for canvas
+  private currentBasePattern: Pattern = null;
+  private currentBasePatternSource = new BehaviorSubject<Pattern>(this.currentBasePattern);
+  currentBasePatternObservable = this.currentBasePatternSource.asObservable();
+
+  private currentBaseStrategy: Strategy = null;
+  private currentBaseStrategySource = new BehaviorSubject<Strategy>(this.currentBaseStrategy);
+  currentBaseStrategyObservable = this.currentBaseStrategySource.asObservable();
+
+  private pattern: Pattern[] = [];
+  private patternSource = new BehaviorSubject<Pattern[]>(this.pattern);
+  patternObservable = this.patternSource.asObservable()
+
+  private strategy: Strategy[] = [];
+  private strategySource = new BehaviorSubject<Strategy[]>(this.strategy);
+  strategyObservable = this.strategySource.asObservable()
+
+  private patternStrategyWeights: CanvasSharedData = {currentPattern: this.currentBasePattern, currentStrategy: this.currentBaseStrategy, weightsBetweenPatternAndStrategy: null};
+  private patternStrategyWeightsSource = new BehaviorSubject<CanvasSharedData>(this.patternStrategyWeights);
+  currentPatternStrategyWeightsObservable = this.patternStrategyWeightsSource.asObservable();
 
 
-  constructor(private strategyPatternService: StrategyPatternService)
+  constructor
+  (
+    private canvasService: CanvasService,
+    private patternService: PatternService,
+    private strategyService: StrategyService,
+    private strategyPatternService: StrategyPatternService)
   {
 
   }
 
-  changeMessage_changePattern(pattern: Pattern)
+
+  update_canvas(canvas: Canvas)
   {
-    if(pattern)
+    this.currentCanvas = canvas;
+    this.currentCanvasSource.next(this.currentCanvas);
+    this.patternService
+        .getAllPattern()
+        .subscribe( a =>
+          this.patternSource.next(a)
+        );
+    this.strategyService
+        .getAllStrategies()
+        .subscribe( a =>
+          this.strategySource.next(a)
+        )
+    if(this.currentCanvas.pattern_ids)
     {
-      this.currentPattern = pattern;
-      if(this.currentPattern && this.currentStrategy)
-      {
-        this.strategyPatternService
-            // i need to call getWeightBetweenStrategyAndPatternByStrategyId
-            // reason: in general i need distances between 1 strategy to all patterns for distance-matrix
-            //  -> now i change pattern
-            //  -> but actually this is unrelevant because i still want to know the distance from baseStrategy to all patterns
-            //  -> actually this function (..._changePattern) is kind of blown, since in the distance-matrix we need only
-            //      the event "changed pattern" and not to fetch the pattern-strategy-distances all the time
-            //        -> we could do that simply in the distance-matrix-component it self i think
-            // .getWeightBetweenStrategyAndPatternByStrategyId(pattern.id)
-            .getWeightBetweenStrategyAndPatternByStrategyId(this.currentStrategy.id)
-            .subscribe(
-                result =>
-                  {
-                    let resultWeights: StrategyPattern[]  = result;
-                    let nextMessage: CanvasSharedData = {currentPattern: this.currentPattern, currentStrategy: this.currentStrategy, weightsBetweenPatternAndStrategy: resultWeights};
-                    this.messageSource.next(nextMessage);
-                  },
-                error =>
-                {
-                  console.log("error")
-                }
-            );
-      }
+      this.updateBasePattern(this.currentCanvas.pattern_ids[0])
+      this.updateCurrentPattern(this.currentCanvas.pattern_ids);
+    }
+    if(this.currentCanvas.strategy_id)
+    {
+      this.updateBaseStrategy(this.currentCanvas.strategy_id);
+      this.updateCurrentStrategy(this.currentCanvas.strategy_id);
     }
   }
 
-  changeMessage_changeStrategy(strategy: Strategy)
+
+  updateBasePattern(pattern: Pattern)
   {
-    if(strategy)
+    this.currentBasePattern = pattern;
+    this.currentBasePatternSource.next(this.currentBasePattern);
+    this.updatePatternStrategyWeights();
+  }
+
+  updateBaseStrategy(strategy: Strategy)
+  {
+      this.currentBaseStrategy = strategy;
+      this.currentBaseStrategySource.next(this.currentBaseStrategy);
+      this.updatePatternStrategyWeights();
+  }
+
+  updateCurrentPattern(currentPatterns: Pattern[])
+  {
+    this.currentPatterns = currentPatterns;
+    this.currentPatternsSource.next(this.currentPatterns);
+  }
+
+  addOneToCurrentPattern(additionalPattern: Pattern)
+  {
+    if(this.currentPatterns.filter(a => a.id == additionalPattern.id).length < 1)
     {
-      console.log("change pattern");
-      this.currentStrategy = strategy;
-      
-      if(this.currentPattern && this.currentStrategy)
-      {
-        this.strategyPatternService
-            // i need to call getWeightBetweenStrategyAndPatternByStrategyId
-            // reason: in general i need distances between 1 strategy to all patterns for distance-matrix
-            //  -> now i change strategy
-            .getWeightBetweenStrategyAndPatternByStrategyId(strategy.id)
-            .subscribe(
-                result =>
-                {
-                  let resultWeights: StrategyPattern[]  = result;
-                  let nextMessage: CanvasSharedData = {currentPattern: this.currentPattern, currentStrategy: this.currentStrategy, weightsBetweenPatternAndStrategy: resultWeights};
-                  this.messageSource.next(nextMessage);
-                },
-                error =>
-                {
-                  console.log("error")
-                }
-            );
-      }
+      this.currentPatterns.push(additionalPattern);
+      this.currentPatternsSource.next(this.currentPatterns);
+    }
+  }
+
+  updateCurrentStrategy(currentStrategy: Strategy)
+  {
+    this.updateBaseStrategy(currentStrategy);
+    this.currentStrategy = currentStrategy;
+    this.currentStrategySource.next(this.currentStrategy);
+  }
+
+  
+  private updatePatternStrategyWeights()
+  {
+    if(this.currentBasePattern && this.currentBaseStrategy)
+    {
+      this.strategyPatternService
+          .getWeightBetweenStrategyAndPatternByStrategyId(this.currentBaseStrategy.id)
+          .subscribe(
+              result =>
+              {
+                let resultWeights: StrategyPattern[]  = result;
+                let nextMessage: CanvasSharedData = {currentPattern: this.currentBasePattern, currentStrategy: this.currentBaseStrategy, weightsBetweenPatternAndStrategy: resultWeights};
+                this.patternStrategyWeightsSource.next(nextMessage);
+              }
+          );
+    }
+    else
+    {
+      this.patternStrategyWeightsSource.next({currentPattern: this.currentBasePattern, currentStrategy: this.currentBaseStrategy, weightsBetweenPatternAndStrategy: null});
     }
   }
 

@@ -15,19 +15,21 @@ var ChartAnnotation = require('chartjs-plugin-annotation');
 })
 export class DistanceMatrixComponent implements OnInit {
 
-  // includes the weights for each pattern field
-  @Input()
   patterns: Pattern[];
-
-  canvasSharedData: CanvasSharedData;
   currentPattern: Pattern;
   currentStrategy: Strategy;
   weightsBetweenPatternAndStrategy: StrategyPattern[];
-  // [light-blue, ]
-  colorOfPoints = ["rgb(179, 157, 219)", "rgb(159, 168, 218)", "rgb(144, 202, 249)", "rgb(129, 212, 250)", "rgb(128, 222, 234)", "rgb(128, 203, 196)"]; //["rgb(100,149,237)"];
+  colorOfPoints = [
+      "rgb(179, 157, 219)",
+      "rgb(159, 168, 218)",
+      "rgb(144, 202, 249)",
+      "rgb(129, 212, 250)",
+      "rgb(128, 222, 234)",
+      "rgb(128, 203, 196)"
+  ];
   colorOfPointsRandom: String[];
-
   chart: Chart;
+
 
   constructor(private canvasSharedDataService: CanvasSharedDataService)
   {
@@ -36,39 +38,60 @@ export class DistanceMatrixComponent implements OnInit {
 
   ngOnInit(): void 
   {
-    this.canvasSharedDataService
-        .currentMessage
-        .subscribe(
-            message =>
-            {
-              this.canvasSharedData = message;
-              this.currentPattern = this.canvasSharedData.currentPattern;
-
-              this.currentStrategy = this.canvasSharedData.currentStrategy;
-              this.weightsBetweenPatternAndStrategy = this.canvasSharedData.weightsBetweenPatternAndStrategy;
-              if(this.currentPattern && this.currentStrategy)
-              {
-                let distanceData: DistanceData;
-                distanceData = this.calculateDistances();
-
-                this.colorOfPointsRandom = [];
-                this.weightsBetweenPatternAndStrategy.forEach(element =>
-                {
-                  this.colorOfPointsRandom.push(this.colorOfPoints[Math.floor((this.colorOfPoints.length-1.0) * Math.random())]);
-                });
-                console.log(this.colorOfPointsRandom);
-                
-                
-                if(this.chart)
-                {
-                  this.chart.destroy();
-                }
-                this.renderChart(distanceData);
-              }
-            }
-        );
+    this.subscribePatterns();
+    this.subscribeCanvasSharedDataForWeights();
   }
 
+  
+  subscribeCanvasSharedDataForWeights()
+  {
+    this.canvasSharedDataService
+      .currentPatternStrategyWeightsObservable
+      .subscribe(
+          message =>
+          {
+            this.currentPattern = message.currentPattern;
+            this.currentStrategy = message.currentStrategy;
+            this.weightsBetweenPatternAndStrategy = message.weightsBetweenPatternAndStrategy;
+            this.createChart();
+          }
+      );
+  }
+
+  subscribePatterns()
+  {
+    this.canvasSharedDataService.patternObservable.subscribe( a => {
+      this.patterns = a;
+      this.createChart();
+    })
+  }
+
+
+  createChart()
+  {
+    if(this.currentPattern && this.currentStrategy && this.patterns)
+    {
+      let distanceData: DistanceData;
+      distanceData = this.calculateDistances();
+      console.log(distanceData);
+
+      this.colorOfPointsRandom = [];
+      this.weightsBetweenPatternAndStrategy.forEach(element =>
+      {
+        this.colorOfPointsRandom.push(this.colorOfPoints[Math.floor((this.colorOfPoints.length-1.0) * Math.random())]);
+      });                
+      
+      if(this.chart)
+      {
+        this.chart.destroy();
+      }
+      this.renderChart(distanceData);
+    }
+    else
+    {
+      this.renderChart({nameList: [], pointList: []});
+    }
+  }
 
   calculateX(basePattern: Pattern, comparePattern: Pattern): Number
   {
@@ -88,12 +111,7 @@ export class DistanceMatrixComponent implements OnInit {
   calculateY(comparePattern: Pattern): Number
   {
     let neededStrategyPattern: StrategyPattern = this.weightsBetweenPatternAndStrategy.filter(a => a.pattern_id.id == comparePattern.id).pop();
-    console.log("test");
-    console.log(this.weightsBetweenPatternAndStrategy)
-    console.log(comparePattern);
-    console.log(comparePattern.id);
-    console.log(neededStrategyPattern);
-    // 5 is a random high number
+    // 5 is a random high number, used for the "TestPattern" since it has no proper background (/weights)
     return neededStrategyPattern ? neededStrategyPattern.weight : 5;
   }
 
@@ -105,8 +123,11 @@ export class DistanceMatrixComponent implements OnInit {
 
     for(let a = 0; a < this.patterns.length; a++)
     {
-      nameList.push(this.patterns[a].name);
-      pointList.push({x: this.calculateX(this.currentPattern, this.patterns[a]), y: this.calculateY(this.patterns[a])})
+      if(!(this.currentPattern.id == this.patterns[a].id))
+      {
+        nameList.push(this.patterns[a].name);
+        pointList.push({x: this.calculateX(this.currentPattern, this.patterns[a]), y: this.calculateY(this.patterns[a])})
+      }
     }
     let distanceData: DistanceData = {nameList: nameList, pointList: pointList};
     return distanceData;
@@ -155,6 +176,11 @@ export class DistanceMatrixComponent implements OnInit {
               scaleLabel: {
                 display: true,
                 labelString: 'Euclidean distance: Business-Model-Canvas'
+              },
+              ticks: {
+                beginAtZero: true,
+                stepValue: 0.5,
+                max: 10
               }
             }
           ],
@@ -167,6 +193,10 @@ export class DistanceMatrixComponent implements OnInit {
               scaleLabel: {
                 display: true,
                 labelString: 'Euclidean distance: Strategy'
+              },
+              ticks: {
+                beginAtZero: true,
+                max: 5
               }
             }
           ]
@@ -190,7 +220,7 @@ export class DistanceMatrixComponent implements OnInit {
         callbacks: {
            label: function(tooltipItem, data) {
               var label = data.labels[tooltipItem.index];
-              return label + ': (' + tooltipItem.xLabel + ', ' + tooltipItem.yLabel + ')';
+              return "Pattern: " + label + ': (x=Distance Pattern: ' + tooltipItem.xLabel + ', y=Distance Strategy: ' + tooltipItem.yLabel + ')';
            }
         }
     },

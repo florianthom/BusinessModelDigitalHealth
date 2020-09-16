@@ -1,20 +1,26 @@
 <div class="business-model-selector-card">
 
-    <div class="canvas-card-container">
+    <div class="business-model-selector-card-container">
 
 
-        <div class="canvas-card-header">
+        <div class="business-model-selector-card-header">
             {{pattern.name}}
             <hr>
         </div>
 
-        <!-- <div class="canvas-card-content">
+        <!-- <div class="business-model-selector-card-content">
         </div> -->
 
 
-        <div class="canvas-card-footer">
-            <div>
-                Examples: A,B,C,...
+        <div class="business-model-selector-card-footer">
+            <div class="footer-left">
+                
+            </div>
+            <div class="footer-right">
+                <div class="flex-right">
+                    <mat-icon class="nav-icon" [ngClass]="{'material-icons': checkIfPatternIsInCurrentPattern(pattern), 'material-icons-outlined': !checkIfPatternIsInCurrentPattern(pattern)}" (click)="selectBaseBusinessPattern(pattern)">grade</mat-icon>
+                    <mat-icon class="nav-icon" (click)="addPatternToCurrentPattern(pattern)">add_circle_outline</mat-icon>
+                </div>
             </div>
         </div>
 
@@ -22,7 +28,4 @@
 
 
     </div>
-
-
-
 </div>

@@ -6952,7 +6952,7 @@ export type GetCanvasOfUserQuery = (
       & Pick<Strategy, 'id' | 'name'>
     )>, pattern_ids?: Maybe<Array<(
       { __typename?: 'Pattern' }
-      & Pick<Pattern, 'id' | 'name'>
+      & Pick<Pattern, 'id' | 'name' | 'actorWeight' | 'valuePropositionWeight' | 'valueCreationWeight' | 'valueDeliveryWeight' | 'revenueWeight' | 'expenseWeight' | 'networkEffectWeight' | 'regulatoryWeight' | 'technicalInfrastructureWeight'>
     )>>, table_id: (
       { __typename?: 'Table' }
       & { actor_entry_ids?: Maybe<Array<(
@@ -7137,7 +7137,7 @@ export type LoginUserQuery = (
     & Pick<AuthPayload, 'token'>
     & { user: (
       { __typename?: 'User' }
-      & Pick<User, 'id'>
+      & Pick<User, 'id' | 'firstName' | 'lastName' | 'email' | 'role'>
     ) }
   ) }
 );
@@ -7164,7 +7164,7 @@ export type RegisterUserMutation = (
   { __typename?: 'Mutation' }
   & { registrate: (
     { __typename?: 'User' }
-    & Pick<User, 'id'>
+    & Pick<User, 'email'>
   ) }
 );
 
@@ -7236,6 +7236,15 @@ export const GetCanvasOfUserDocument = gql`
     pattern_ids {
       id
       name
+      actorWeight
+      valuePropositionWeight
+      valueCreationWeight
+      valueDeliveryWeight
+      revenueWeight
+      expenseWeight
+      networkEffectWeight
+      regulatoryWeight
+      technicalInfrastructureWeight
     }
     table_id {
       actor_entry_ids {
@@ -7511,6 +7520,10 @@ export const LoginUserDocument = gql`
     token
     user {
       id
+      firstName
+      lastName
+      email
+      role
     }
   }
 }
@@ -7539,7 +7552,7 @@ export const CheckEmailDocument = gql`
 export const RegisterUserDocument = gql`
     mutation registerUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
   registrate(data: {firstName: $firstName, lastName: $lastName, email: $email, password: $password}) {
-    id
+    email
   }
 }
     `;

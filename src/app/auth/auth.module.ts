@@ -5,6 +5,7 @@ import { RegistrateComponent } from './components/registrate/registrate.componen
 import {AuthRoutingModule} from "./auth-routing.module";
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormMessagesComponent } from './components/form-messages/form-messages.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 
 // // Dont import! it breaks the app! Reason: it imports one of BrowserModule, BrowserAnimationsModule,
@@ -12,7 +13,7 @@ import { FormMessagesComponent } from './components/form-messages/form-messages.
 // import { MaterialModule } from '@app/material/material.module';
 
 @NgModule({
-  declarations: [LoginComponent, RegistrateComponent, FormMessagesComponent],
+  declarations: [LoginComponent, RegistrateComponent, FormMessagesComponent, LogoutComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,

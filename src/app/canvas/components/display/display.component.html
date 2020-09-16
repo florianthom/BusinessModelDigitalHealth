@@ -8,7 +8,6 @@
             <div class="display-card-container">
                 <div class="display-card-header">
                     {{currentPattern.name}}
-                    <mat-icon class="material-icons nav-icon" [color]="iconColorSelectBusinessModel" (click)="selectedBusinessModel(currentPattern)">grade</mat-icon>
                     <hr>
                 </div>
 
@@ -17,8 +16,14 @@
 
 
                 <div class="display-card-footer">
-                    <div>
-                        <!-- Examples: A,B,C,... -->
+                    <div class="footer-left">
+                        
+                    </div>
+                    <div class="footer-right">
+                        <div class="flex-right">
+                            <mat-icon class="nav-icon" [ngClass]="{'material-icons': checkIfPatternIsInCurrentPattern(currentPattern), 'material-icons-outlined': !checkIfPatternIsInCurrentPattern(currentPattern)}" (click)="selectBaseBusinessPattern(currentPattern)">grade</mat-icon>
+                            <mat-icon class="nav-icon" (click)="deleteBusinessPattern(currentPattern)">delete</mat-icon>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -37,22 +42,31 @@
         <h3>Your use following Strategy</h3>
     </div>
     <div class="display-row-container">
-        <div class="display-selector-card">
-            <div class="display-card-container">
-                <div class="display-card-header">
-                    {{currentStrategy.name}}
-                    <mat-icon class="material-icons nav-icon" [color]="iconColorSelectBusinessStrategy" (click)="selectedBusinessStrategy(currentStrategy)">grade</mat-icon>
-                    <hr>
-                </div>
-
-                <!-- <div class="canvas-card-content">
-                </div> -->
-
-
-                <div class="display-card-footer">
-                    <div>
-                        <!-- Examples: A,B,C,... -->
+        <div *ngIf="currentStrategy!=null">
+            <div class="display-selector-card">
+                <div class="display-card-container">
+                    <div class="display-card-header">
+                        {{currentStrategy.name}}
+                        <hr>
                     </div>
+
+                    <!-- <div class="canvas-card-content">
+                    </div> -->
+
+
+                    <div class="display-card-footer">
+                        <div class="footer-left">
+                            
+                        </div>
+                        <div class="footer-right">
+                            <div class="flex-right">
+                                <mat-icon class="nav-icon" [ngClass]="{'material-icons': currentBaseStrategy!=null && currentStrategy.id==currentBaseStrategy.id, 'material-icons-outlined': currentBaseStrategy==null || currentStrategy.id!=currentBaseStrategy.id}" (click)="selectedBusinessStrategy(currentStrategy)">grade</mat-icon>
+                                <mat-icon class="nav-icon" (click)="deleteBusinessStrategy(currentStrategy)">delete</mat-icon>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>

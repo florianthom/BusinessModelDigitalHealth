@@ -3,6 +3,10 @@ query loginUser($email: String!, $password: String!) {
     token
     user {
       id
+      firstName
+      lastName
+      email
+      role
     }
   }
 }
@@ -14,6 +18,6 @@ query checkEmail($email: String!) {
 
 mutation registerUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
   registrate(data: {firstName: $firstName ,lastName: $lastName, email: $email, password: $password}) {
-    id
+    email
   }
 }

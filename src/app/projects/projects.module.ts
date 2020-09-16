@@ -6,13 +6,16 @@ import { ProjectsPickerComponent } from './components/projects-picker/projects-p
 import { ProjectsPickerCardComponent } from './components/projects-picker-card/projects-picker-card.component';
 import { ProjectsComponent } from './projects.component';
 import { SharedModule } from "@app/shared/shared.module";
+import { MaterialModule } from "@app/material/material.module";
+
 
 @NgModule({
   declarations: [ProjectsPickerComponent, ProjectsPickerCardComponent, ProjectsComponent],
   imports: [
     CommonModule,
     ProjectsRoutingModule,
-    SharedModule
+    SharedModule,
+    MaterialModule
   ]
 })
 export class ProjectsModule { }
