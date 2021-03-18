@@ -1,6 +1,6 @@
 # HealthCareCareer
 
-Web-App to explore and build business-model-pattern for your business in public health care. Create projects, manage your business-model-canvases and get inspired by existing patterns to support you in creating your own new business or scale / expand your current business. A demonstration of the full app can be found on [netlify]. This Project is all about the front-end part of the project. The back-end part can be found  [here].
+Web-App to explore and build business-model-pattern for your business in public health care. Create projects, manage your business-model-canvases and get inspired by existing patterns to support you in creating your own new business or scale / expand your current business. This Project is all about the front-end part of the project. The back-end part can be found  [here].
 
 ## Prerequisites
 * Node v12+
